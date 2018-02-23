@@ -1,0 +1,50 @@
+
+*, html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+}
+
+.main-header {
+    width: 100%;
+    background: #1063ff;
+    color: #fff;
+    height: 100px;
+    display: flex;
+}
+.blue-border {
+    height: 5px;
+    background: #1063ff;
+}
+header, nav {
+    flex: 1;
+}
+ul {
+    list-style-type: square;
+    margin-left: 20px;
+    font-size: 18px;
+}
+li .material-icons {
+    font-size: 18px;
+}
+
+.main-body {
+    margin-top: 20px;
+    padding: 0 30px 0 30px;
+    font-size: 16px;
+}
+input, select {
+    font-size: 14px;
+    line-height: 25px;
+    margin: 3px 5px 3px 5px;
+}
+select {
+    height: 25px;
+    width: 125px;
+}
+.tune {
+    /*padding-top: 10px;*/
+}
+td:not(.tune td){
+    padding-top: 16px;
+}

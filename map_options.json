@@ -1,0 +1,20 @@
+[
+  {
+    "option": "prenom",
+    "comparator": "no.priv.garshol.duke.comparators.Levenshtein",
+    "comparator_name": "Levenshtein",
+    "weight": [0.4, 0.6]
+  },
+  {
+    "option": "nom",
+    "comparator": "no.priv.garshol.duke.comparators.Levenshtein",
+    "comparator_name": "Levenshtein",
+    "weight": [0.3, 0.8]
+  },
+  {
+    "option": "mail",
+    "comparator": "org.minibig.duke.miniduke.EmailComparator",
+    "comparator_name": "Email",
+    "weight": [0.5, 0.95]
+  }
+]
