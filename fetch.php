@@ -5,9 +5,13 @@
  * Date: 06/02/2018
  * Time: 16:24
  */
+
 ?>
 
 <?php
+
+include 'vendor/autoload.php';
+use Yosymfony\Toml\Toml;
 
 function add_field_logstash($data, $esKey, $formKey) {
     $out = '"'.$esKey.'" => [';
@@ -47,11 +51,35 @@ if (isset($_POST) && $_POST['make_conf_file']) {
 
         var_dump($merged);
 
-        $input = 'input { stdin { } }
+
+        $configuration = Toml::ParseFile('config.toml');
+
+
+
+        $input = 'input { 
+        kafka {
+        "bootstrap_servers" => '.$configuration['kafka']['hosts'].'
+        "topics" => '.$configuration['kafka']['topics'].'
+    }}
     
     ';
 
         $filter = 'filter {
+                ruby {
+                init => "require \'json\'"
+                code => \'
+                    eventHash = event.to_hash
+                    hash = JSON.parse(eventHash["message"])
+                    event.set("data", [';
+                    $i=0;
+                    foreach ($merged as $item) {
+                        $filter .= 'hash["' . $item['key'] . '"]';
+                        $filter .= ($i < sizeof($merged) - 1) ? ',' : '';
+                        $i++;
+                    }
+                    $filter .= '])
+                \'
+            }
                 mutate {
                     add_field => {
                     ';
@@ -99,9 +127,9 @@ if (isset($_POST) && $_POST['make_conf_file']) {
 
         $output = 'output {
                     elasticsearch { 
-                        hosts => ["localhost:9200"]
-                        index => "logstash_test"
-                        document_type => "mdm"
+                        hosts => '.$configuration['elasticsearch']['hosts'].'
+                        index => '.$configuration['elasticsearch']['index'].'
+                        document_type => '.$configuration['elasticsearch']['type'].'
                         pipeline => "miniduke"
                     }
                   stdout { codec => rubydebug }
@@ -110,24 +138,6 @@ if (isset($_POST) && $_POST['make_conf_file']) {
         var_dump($topic);
         file_put_contents('./topics_conf/'.$topic.'.conf', $input . $filter . $output);
 
-
-        /*    input { stdin { } }
-
-                filter {
-                        grok {
-                            match => { "message" => "%{COMBINEDAPACHELOG}" }
-                  }
-                  date {
-                            match => [ "timestamp" , "dd/MMM/yyyy:HH:mm:ss Z" ]
-                  }
-                }
-
-                output {
-                        elasticsearch { hosts => ["localhost:9200"] }
-                  stdout { codec => rubydebug }
-                }*/
-
-//    var_dump($merged);
     }
 }
 

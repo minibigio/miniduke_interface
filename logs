@@ -859,3 +859,20 @@
 127.0.0.1 - - [21/Feb/2018:21:44:55 +0100] "GET /index.css HTTP/1.1" 304 -
 127.0.0.1 - - [21/Feb/2018:21:44:55 +0100] "GET /tune.js HTTP/1.1" 304 -
 127.0.0.1 - - [21/Feb/2018:21:44:55 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 22420
+127.0.0.1 - - [23/Feb/2018:16:17:39 +0100] "GET / HTTP/1.1" 200 4721
+127.0.0.1 - - [23/Feb/2018:16:17:39 +0100] "GET /icons/blank.gif HTTP/1.1" 200 148
+127.0.0.1 - - [23/Feb/2018:16:17:44 +0100] "GET /map.php HTTP/1.1" 200 3152
+127.0.0.1 - - [23/Feb/2018:16:17:44 +0100] "GET /index.css HTTP/1.1" 200 705
+127.0.0.1 - - [23/Feb/2018:16:17:44 +0100] "GET /tune.js HTTP/1.1" 304 -
+127.0.0.1 - - [23/Feb/2018:16:17:44 +0100] "GET /css/bootstrap.min.css HTTP/1.1" 304 -
+127.0.0.1 - - [23/Feb/2018:16:17:47 +0100] "GET /topic.php HTTP/1.1" 200 4867
+127.0.0.1 - - [23/Feb/2018:16:17:49 +0100] "GET /map.php?topic=reconia HTTP/1.1" 200 3152
+127.0.0.1 - - [23/Feb/2018:16:17:51 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 22420
+127.0.0.1 - - [23/Feb/2018:16:18:18 +0100] "POST /fetch.php HTTP/1.1" 200 3716
+127.0.0.1 - - [23/Feb/2018:16:25:13 +0100] "GET / HTTP/1.1" 200 4721
+127.0.0.1 - - [23/Feb/2018:17:00:34 +0100] "GET / HTTP/1.1" 200 4936
+[Fri Feb 23 17:21:28.501887 2018] [php7:notice] [pid 847] [client 127.0.0.1:63362] PHP Fatal error:  Uncaught Yosymfony\\Toml\\Exception\\ParseException: Syntax error: unexpected token "T_INTEGER" at line 7 with value "+01". Expected T_NEWLINE or T_EOS in "config.toml". in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php:86\nStack trace:\n#0 /Library/WebServer/Documents/miniduke_interface/fetch.php(56): Yosymfony\\Toml\\Toml::parseFile('config.toml')\n#1 {main}\n  thrown in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php on line 86, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [23/Feb/2018:17:21:28 +0100] "POST /fetch.php HTTP/1.1" 200 5436
+127.0.0.1 - - [23/Feb/2018:17:22:01 +0100] "POST /fetch.php HTTP/1.1" 200 4312
+127.0.0.1 - - [23/Feb/2018:18:21:41 +0100] "GET / HTTP/1.1" 200 5366
+127.0.0.1 - - [23/Feb/2018:18:21:44 +0100] "GET / HTTP/1.1" 200 5366

@@ -8,6 +8,9 @@
 ?>
 
 <?php
+include 'vendor/autoload.php';
+use Yosymfony\Toml\Toml;
+
 $topics = [];
 
 if ($handle = opendir('./topics_conf/')) {
@@ -39,16 +42,32 @@ if (isset($_GET['topic'])) {
         }
     }
 }
-
+var_dump(isset($_GET['index']));
 if (isset($_GET['index']) && in_array($_GET['index'], $topics)) {
-    $pdo = new PDO('sqlite:miniduke.db');
+    var_dump("ok");
+    $configuration = Toml::ParseFile('config.toml');
+
+
+    $pdo = new PDO($configuration["database"]["connection"]);
 
     $logstashInstancesSql= $pdo->prepare('select count(*) from logstash_instances where name=?');
     $logstashInstancesSql->execute([$_GET['index']]);
     $logstashInstancesCount = $logstashInstancesSql->fetch();
 
+
+
     if ($logstashInstancesCount[0] == 0) {
-        exec('ssh root@192.168.0.237 "./data/reconia/start_logstash.sh '.$_GET['index'].'"', $pid);
+        if ($configuration["launcher"]["distant"]) {
+            echo 'ssh '.$configuration["launcher"]["distant"]["user"].'@'.$configuration["launcher"]["distant"]["host"].' 
+            "sh '.$configuration["launcher"]["distant"]["path"].'start_logstash.sh '.$_GET['index'].'"';
+            exec('ssh '.$configuration["launcher"]["distant"]["user"].'@'.$configuration["launcher"]["distant"]["host"].' 
+            "sh '.$configuration["launcher"]["distant"]["path"].'start_logstash.sh '.$_GET['index'].'"', $pid);
+        }
+        else {
+            echo 'sh ' . $configuration["launcher"]["distant"]["path"] . 'start_logstash.sh ' . $_GET['index'];
+            exec('sh ' . $configuration["launcher"]["distant"]["path"] . 'start_logstash.sh ' . $_GET['index'], $pid);
+
+        }
 
         $logstashInstancesInsert = $pdo->prepare('insert into logstash_instances(name, pid) values (?, ?)');
         $logstashInstancesInsert->execute([$_GET['index'], $pid]);

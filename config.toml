@@ -1,0 +1,45 @@
+#
+# Fichier de configuration de l'interface Miniduke
+#
+
+title = "Fichier de configuration de l'application Miniduke"
+
+[owner]
+name = "Minibig"
+dob = "2018-02-23T17:00:00+01:00"
+
+[elasticsearch]
+host = "localhost:9200"
+index = "miniduke"
+type = "mdm"
+# Connexion de Logstah à Kafka
+# Il est possible de mettre plusieurs hosts et plusieurs topics
+[kafka]
+hosts = ["192.168.0.237:9092"]
+topics = ["reconia"]
+
+# Si le launcher est distant, seul launcher.distant sera pris en compte et vis versa
+[launcher]
+distant = true
+
+# Il est conseillé de donner le path absolu
+# Sinon, partez du dossier home du user
+# Exemple: "/home/root/miniduke/"
+[launcher.distant]
+host = "192.168.0.237"
+user = "root"
+path = "/home/root/reconia/"
+
+# Il est conseillé de donner le path absolu
+# Sinon, partez du dossier "root" de l'interface
+# Si il est à la racine du dossier de l'interface, laissez l'espace vide
+# Exemple: "/exec/"
+[launcher.local]
+path = ""
+
+# Pour connection, il est demandé de mettre le système de connexion pour PDO (PHP)
+# Si un fichier est requis, il est conseillé de donner le path absolu
+# Sinon, partez du dossier "root" de l'interface
+[database]
+connection = "sqlite:miniduke.db"
+type = "sqlite3"
