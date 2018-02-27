@@ -11,7 +11,7 @@
 <?php
 
 include 'vendor/autoload.php';
-use Yosymfony\Toml\Toml;
+use Toml\Parser;
 
 function add_field_logstash($data, $esKey, $formKey) {
     $out = '"'.$esKey.'" => [';
@@ -25,6 +25,19 @@ function add_field_logstash($data, $esKey, $formKey) {
     ';
 
     return $out;
+}
+
+function disp_config_array($array) {
+    $s = "[";
+    $i = 0;
+    foreach ($array as $a) {
+        $s .= '"'.$a.'"';
+        if ($i < sizeof($array) -1)
+            $s .= ",";
+        $i++;
+    }
+    $s .= "]";
+    return $s;
 }
 
 if (isset($_POST) && $_POST['make_conf_file']) {
@@ -42,24 +55,33 @@ if (isset($_POST) && $_POST['make_conf_file']) {
 
 
         $merged = [];
-        for ($i = 1; $i <= sizeof($comparator); $i++)
+        for ($i = 1; $i <= sizeof($comparator); $i++) {
             $merged[] = ['comparator' => $comparator[$i],
                 'key' => $key[$i - 1],
                 'new_key' => $newKey[$i - 1],
                 'high' => $high[$i],
                 'low' => $low[$i]];
 
+            $jsonMerged['comparators'][] = $comparator[$i];
+            $jsonMerged['new_keys'][] = $newKey[$i - 1];
+            $jsonMerged['weights'][] = [(double)$low[$i], (double)$high[$i]];
+        }
+        $jsonMerged['threshold'] = $threshold;
+
+        var_dump($jsonMerged);
         var_dump($merged);
 
-
-        $configuration = Toml::ParseFile('config.toml');
-
+        file_put_contents('topics_conf/'.$topic.'.conf.json', json_encode($jsonMerged));
 
 
+        $configuration = Parser::fromFile('config.toml');
+
+
+var_dump($configuration['kafka']['hosts']);
         $input = 'input { 
         kafka {
-        "bootstrap_servers" => '.$configuration['kafka']['hosts'].'
-        "topics" => '.$configuration['kafka']['topics'].'
+        "bootstrap_servers" => '.disp_config_array($configuration['kafka']['hosts']).'
+        "topics" => '.disp_config_array($configuration['kafka']['topics']).'
     }}
     
     ';
@@ -127,9 +149,9 @@ if (isset($_POST) && $_POST['make_conf_file']) {
 
         $output = 'output {
                     elasticsearch { 
-                        hosts => '.$configuration['elasticsearch']['hosts'].'
-                        index => '.$configuration['elasticsearch']['index'].'
-                        document_type => '.$configuration['elasticsearch']['type'].'
+                        hosts => "'.$configuration['elasticsearch']['host'].'"
+                        index => "'.$configuration['elasticsearch']['index'].'"
+                        document_type => "'.$configuration['elasticsearch']['type'].'"
                         pipeline => "miniduke"
                     }
                   stdout { codec => rubydebug }

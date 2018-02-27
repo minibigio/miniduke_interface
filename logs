@@ -876,3 +876,290 @@
 127.0.0.1 - - [23/Feb/2018:17:22:01 +0100] "POST /fetch.php HTTP/1.1" 200 4312
 127.0.0.1 - - [23/Feb/2018:18:21:41 +0100] "GET / HTTP/1.1" 200 5366
 127.0.0.1 - - [23/Feb/2018:18:21:44 +0100] "GET / HTTP/1.1" 200 5366
+127.0.0.1 - - [26/Feb/2018:09:47:33 +0100] "GET /tune.js HTTP/1.1" 304 -
+127.0.0.1 - - [26/Feb/2018:09:47:33 +0100] "GET /css/bootstrap.min.css HTTP/1.1" 304 -
+127.0.0.1 - - [26/Feb/2018:09:47:33 +0100] "GET /index.css HTTP/1.1" 304 -
+127.0.0.1 - - [26/Feb/2018:09:47:33 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 22766
+127.0.0.1 - - [26/Feb/2018:09:47:33 +0100] "GET /css/bootstrap.min.css HTTP/1.1" 304 -
+127.0.0.1 - - [26/Feb/2018:09:47:33 +0100] "GET /index.css HTTP/1.1" 304 -
+127.0.0.1 - - [26/Feb/2018:09:47:33 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 22766
+127.0.0.1 - - [26/Feb/2018:09:47:33 +0100] "GET /tune.js HTTP/1.1" 304 -
+127.0.0.1 - - [26/Feb/2018:09:50:18 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 23105
+[Mon Feb 26 10:14:01.159033 2018] [php7:notice] [pid 491] [client 127.0.0.1:65353] PHP Parse error:  syntax error, unexpected 'as' (T_AS), expecting ';' in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+127.0.0.1 - - [26/Feb/2018:10:14:01 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 429
+127.0.0.1 - - [26/Feb/2018:10:15:25 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 22919
+127.0.0.1 - - [26/Feb/2018:10:15:44 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 22919
+[Mon Feb 26 10:16:06.458311 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP Warning:  filesize() expects parameter 1 to be a valid path, resource given in /Library/WebServer/Documents/miniduke_interface/map.php on line 233
+[Mon Feb 26 10:16:06.458668 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP Stack trace:
+[Mon Feb 26 10:16:06.458724 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:16:06.458767 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP   2. filesize() /Library/WebServer/Documents/miniduke_interface/map.php:233
+[Mon Feb 26 10:16:06.461022 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP Warning:  fread(): Length parameter must be greater than 0 in /Library/WebServer/Documents/miniduke_interface/map.php on line 233
+[Mon Feb 26 10:16:06.461138 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP Stack trace:
+[Mon Feb 26 10:16:06.461224 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:16:06.461274 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP   2. fread() /Library/WebServer/Documents/miniduke_interface/map.php:233
+[Mon Feb 26 10:16:06.461360 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP Notice:  Undefined index: new_key in /Library/WebServer/Documents/miniduke_interface/map.php on line 237
+[Mon Feb 26 10:16:06.461391 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP Stack trace:
+[Mon Feb 26 10:16:06.461421 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:16:06.461873 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP Notice:  Undefined index: new_key in /Library/WebServer/Documents/miniduke_interface/map.php on line 237
+[Mon Feb 26 10:16:06.461971 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP Stack trace:
+[Mon Feb 26 10:16:06.462030 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:16:06.462085 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP Notice:  Undefined index: new_key in /Library/WebServer/Documents/miniduke_interface/map.php on line 237
+[Mon Feb 26 10:16:06.462115 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP Stack trace:
+[Mon Feb 26 10:16:06.462146 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:16:06.462187 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP Notice:  Undefined index: new_key in /Library/WebServer/Documents/miniduke_interface/map.php on line 237
+[Mon Feb 26 10:16:06.462216 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP Stack trace:
+[Mon Feb 26 10:16:06.462246 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65371] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+127.0.0.1 - - [26/Feb/2018:10:16:06 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 29764
+[Mon Feb 26 10:16:31.126400 2018] [php7:notice] [pid 846] [client 127.0.0.1:65373] PHP Notice:  Undefined index: new_key in /Library/WebServer/Documents/miniduke_interface/map.php on line 237
+[Mon Feb 26 10:16:31.126916 2018] [php7:notice] [pid 846] [client 127.0.0.1:65373] PHP Stack trace:
+[Mon Feb 26 10:16:31.127064 2018] [php7:notice] [pid 846] [client 127.0.0.1:65373] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:16:31.128041 2018] [php7:notice] [pid 846] [client 127.0.0.1:65373] PHP Notice:  Undefined index: new_key in /Library/WebServer/Documents/miniduke_interface/map.php on line 237
+[Mon Feb 26 10:16:31.128117 2018] [php7:notice] [pid 846] [client 127.0.0.1:65373] PHP Stack trace:
+[Mon Feb 26 10:16:31.128154 2018] [php7:notice] [pid 846] [client 127.0.0.1:65373] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:16:31.128209 2018] [php7:notice] [pid 846] [client 127.0.0.1:65373] PHP Notice:  Undefined index: new_key in /Library/WebServer/Documents/miniduke_interface/map.php on line 237
+[Mon Feb 26 10:16:31.128239 2018] [php7:notice] [pid 846] [client 127.0.0.1:65373] PHP Stack trace:
+[Mon Feb 26 10:16:31.128269 2018] [php7:notice] [pid 846] [client 127.0.0.1:65373] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:16:31.128321 2018] [php7:notice] [pid 846] [client 127.0.0.1:65373] PHP Notice:  Undefined index: new_key in /Library/WebServer/Documents/miniduke_interface/map.php on line 237
+[Mon Feb 26 10:16:31.128422 2018] [php7:notice] [pid 846] [client 127.0.0.1:65373] PHP Stack trace:
+[Mon Feb 26 10:16:31.128516 2018] [php7:notice] [pid 846] [client 127.0.0.1:65373] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+127.0.0.1 - - [26/Feb/2018:10:16:31 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 26971
+[Mon Feb 26 10:16:55.347792 2018] [php7:notice] [pid 491] [client 127.0.0.1:65376] PHP Notice:  Undefined index: new_keys in /Library/WebServer/Documents/miniduke_interface/map.php on line 237
+[Mon Feb 26 10:16:55.348183 2018] [php7:notice] [pid 491] [client 127.0.0.1:65376] PHP Stack trace:
+[Mon Feb 26 10:16:55.348255 2018] [php7:notice] [pid 491] [client 127.0.0.1:65376] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:16:55.348604 2018] [php7:notice] [pid 491] [client 127.0.0.1:65376] PHP Notice:  Undefined index: new_keys in /Library/WebServer/Documents/miniduke_interface/map.php on line 237
+[Mon Feb 26 10:16:55.348649 2018] [php7:notice] [pid 491] [client 127.0.0.1:65376] PHP Stack trace:
+[Mon Feb 26 10:16:55.348694 2018] [php7:notice] [pid 491] [client 127.0.0.1:65376] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:16:55.348751 2018] [php7:notice] [pid 491] [client 127.0.0.1:65376] PHP Notice:  Undefined index: new_keys in /Library/WebServer/Documents/miniduke_interface/map.php on line 237
+[Mon Feb 26 10:16:55.348928 2018] [php7:notice] [pid 491] [client 127.0.0.1:65376] PHP Stack trace:
+[Mon Feb 26 10:16:55.349000 2018] [php7:notice] [pid 491] [client 127.0.0.1:65376] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:16:55.349157 2018] [php7:notice] [pid 491] [client 127.0.0.1:65376] PHP Notice:  Undefined index: new_keys in /Library/WebServer/Documents/miniduke_interface/map.php on line 237
+[Mon Feb 26 10:16:55.349267 2018] [php7:notice] [pid 491] [client 127.0.0.1:65376] PHP Stack trace:
+[Mon Feb 26 10:16:55.349642 2018] [php7:notice] [pid 491] [client 127.0.0.1:65376] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+127.0.0.1 - - [26/Feb/2018:10:16:55 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 26975
+[Mon Feb 26 10:17:21.088068 2018] [php7:notice] [pid 840] [client 127.0.0.1:65378] PHP Warning:  array_keys() expects parameter 1 to be array, null given in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+[Mon Feb 26 10:17:21.088412 2018] [php7:notice] [pid 840] [client 127.0.0.1:65378] PHP Stack trace:
+[Mon Feb 26 10:17:21.088482 2018] [php7:notice] [pid 840] [client 127.0.0.1:65378] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:17:21.088543 2018] [php7:notice] [pid 840] [client 127.0.0.1:65378] PHP   2. array_keys() /Library/WebServer/Documents/miniduke_interface/map.php:236
+[Mon Feb 26 10:17:21.089409 2018] [php7:notice] [pid 840] [client 127.0.0.1:65378] PHP Warning:  Invalid argument supplied for foreach() in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+[Mon Feb 26 10:17:21.089480 2018] [php7:notice] [pid 840] [client 127.0.0.1:65378] PHP Stack trace:
+[Mon Feb 26 10:17:21.089531 2018] [php7:notice] [pid 840] [client 127.0.0.1:65378] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+127.0.0.1 - - [26/Feb/2018:10:17:21 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 25338
+[Mon Feb 26 10:17:34.451752 2018] [php7:notice] [pid 847] [client 127.0.0.1:65380] PHP Warning:  array_keys() expects parameter 1 to be array, null given in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+[Mon Feb 26 10:17:34.452106 2018] [php7:notice] [pid 847] [client 127.0.0.1:65380] PHP Stack trace:
+[Mon Feb 26 10:17:34.452260 2018] [php7:notice] [pid 847] [client 127.0.0.1:65380] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:17:34.452404 2018] [php7:notice] [pid 847] [client 127.0.0.1:65380] PHP   2. array_keys() /Library/WebServer/Documents/miniduke_interface/map.php:236
+[Mon Feb 26 10:17:34.453056 2018] [php7:notice] [pid 847] [client 127.0.0.1:65380] PHP Warning:  Invalid argument supplied for foreach() in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+[Mon Feb 26 10:17:34.453158 2018] [php7:notice] [pid 847] [client 127.0.0.1:65380] PHP Stack trace:
+[Mon Feb 26 10:17:34.453306 2018] [php7:notice] [pid 847] [client 127.0.0.1:65380] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+127.0.0.1 - - [26/Feb/2018:10:17:34 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 25491
+[Mon Feb 26 10:17:51.485572 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65381] PHP Warning:  array_keys() expects parameter 1 to be array, string given in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+[Mon Feb 26 10:17:51.485987 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65381] PHP Stack trace:
+[Mon Feb 26 10:17:51.486052 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65381] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:17:51.486107 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65381] PHP   2. array_keys() /Library/WebServer/Documents/miniduke_interface/map.php:236
+[Mon Feb 26 10:17:51.486221 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65381] PHP Warning:  Invalid argument supplied for foreach() in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+[Mon Feb 26 10:17:51.486269 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65381] PHP Stack trace:
+[Mon Feb 26 10:17:51.486317 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65381] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+127.0.0.1 - - [26/Feb/2018:10:17:51 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 25978
+[Mon Feb 26 10:18:02.544202 2018] [php7:notice] [pid 846] [client 127.0.0.1:65383] PHP Warning:  array_keys() expects parameter 1 to be array, null given in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+[Mon Feb 26 10:18:02.544485 2018] [php7:notice] [pid 846] [client 127.0.0.1:65383] PHP Stack trace:
+[Mon Feb 26 10:18:02.544536 2018] [php7:notice] [pid 846] [client 127.0.0.1:65383] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:18:02.544919 2018] [php7:notice] [pid 846] [client 127.0.0.1:65383] PHP   2. array_keys() /Library/WebServer/Documents/miniduke_interface/map.php:236
+[Mon Feb 26 10:18:02.545027 2018] [php7:notice] [pid 846] [client 127.0.0.1:65383] PHP Warning:  Invalid argument supplied for foreach() in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+[Mon Feb 26 10:18:02.545075 2018] [php7:notice] [pid 846] [client 127.0.0.1:65383] PHP Stack trace:
+[Mon Feb 26 10:18:02.545122 2018] [php7:notice] [pid 846] [client 127.0.0.1:65383] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+127.0.0.1 - - [26/Feb/2018:10:18:02 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 25491
+[Mon Feb 26 10:18:14.758639 2018] [php7:notice] [pid 491] [client 127.0.0.1:65384] PHP Warning:  array_keys() expects parameter 1 to be array, null given in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+[Mon Feb 26 10:18:14.758823 2018] [php7:notice] [pid 491] [client 127.0.0.1:65384] PHP Stack trace:
+[Mon Feb 26 10:18:14.758859 2018] [php7:notice] [pid 491] [client 127.0.0.1:65384] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:18:14.758892 2018] [php7:notice] [pid 491] [client 127.0.0.1:65384] PHP   2. array_keys() /Library/WebServer/Documents/miniduke_interface/map.php:236
+[Mon Feb 26 10:18:14.758948 2018] [php7:notice] [pid 491] [client 127.0.0.1:65384] PHP Warning:  Invalid argument supplied for foreach() in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+[Mon Feb 26 10:18:14.758978 2018] [php7:notice] [pid 491] [client 127.0.0.1:65384] PHP Stack trace:
+[Mon Feb 26 10:18:14.759008 2018] [php7:notice] [pid 491] [client 127.0.0.1:65384] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+127.0.0.1 - - [26/Feb/2018:10:18:14 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 25491
+[Mon Feb 26 10:18:49.237553 2018] [php7:notice] [pid 840] [client 127.0.0.1:65391] PHP Warning:  array_keys() expects parameter 1 to be array, string given in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+[Mon Feb 26 10:18:49.237999 2018] [php7:notice] [pid 840] [client 127.0.0.1:65391] PHP Stack trace:
+[Mon Feb 26 10:18:49.238055 2018] [php7:notice] [pid 840] [client 127.0.0.1:65391] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:18:49.238101 2018] [php7:notice] [pid 840] [client 127.0.0.1:65391] PHP   2. array_keys() /Library/WebServer/Documents/miniduke_interface/map.php:236
+[Mon Feb 26 10:18:49.238443 2018] [php7:notice] [pid 840] [client 127.0.0.1:65391] PHP Warning:  Invalid argument supplied for foreach() in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+[Mon Feb 26 10:18:49.238494 2018] [php7:notice] [pid 840] [client 127.0.0.1:65391] PHP Stack trace:
+[Mon Feb 26 10:18:49.238531 2018] [php7:notice] [pid 840] [client 127.0.0.1:65391] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+127.0.0.1 - - [26/Feb/2018:10:18:49 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 25961
+[Mon Feb 26 10:19:41.136746 2018] [php7:notice] [pid 847] [client 127.0.0.1:65396] PHP Warning:  array_keys() expects parameter 1 to be array, string given in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+[Mon Feb 26 10:19:41.137179 2018] [php7:notice] [pid 847] [client 127.0.0.1:65396] PHP Stack trace:
+[Mon Feb 26 10:19:41.137306 2018] [php7:notice] [pid 847] [client 127.0.0.1:65396] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:19:41.137410 2018] [php7:notice] [pid 847] [client 127.0.0.1:65396] PHP   2. array_keys() /Library/WebServer/Documents/miniduke_interface/map.php:236
+[Mon Feb 26 10:19:41.137551 2018] [php7:notice] [pid 847] [client 127.0.0.1:65396] PHP Warning:  Invalid argument supplied for foreach() in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+[Mon Feb 26 10:19:41.137588 2018] [php7:notice] [pid 847] [client 127.0.0.1:65396] PHP Stack trace:
+[Mon Feb 26 10:19:41.137620 2018] [php7:notice] [pid 847] [client 127.0.0.1:65396] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+127.0.0.1 - - [26/Feb/2018:10:19:41 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 25978
+[Mon Feb 26 10:19:58.546711 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65399] PHP Warning:  array_keys() expects parameter 1 to be array, string given in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+[Mon Feb 26 10:19:58.547035 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65399] PHP Stack trace:
+[Mon Feb 26 10:19:58.547106 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65399] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:19:58.547254 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65399] PHP   2. array_keys() /Library/WebServer/Documents/miniduke_interface/map.php:236
+[Mon Feb 26 10:19:58.547359 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65399] PHP Warning:  Invalid argument supplied for foreach() in /Library/WebServer/Documents/miniduke_interface/map.php on line 236
+[Mon Feb 26 10:19:58.547406 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65399] PHP Stack trace:
+[Mon Feb 26 10:19:58.547452 2018] [php7:notice] [pid 1624] [client 127.0.0.1:65399] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+127.0.0.1 - - [26/Feb/2018:10:19:58 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 25493
+127.0.0.1 - - [26/Feb/2018:10:20:25 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 25513
+[Mon Feb 26 10:21:09.669371 2018] [php7:notice] [pid 491] [client 127.0.0.1:65404] PHP Notice:  Undefined offset: 3 in /Library/WebServer/Documents/miniduke_interface/map.php on line 237
+[Mon Feb 26 10:21:09.669755 2018] [php7:notice] [pid 491] [client 127.0.0.1:65404] PHP Stack trace:
+[Mon Feb 26 10:21:09.669811 2018] [php7:notice] [pid 491] [client 127.0.0.1:65404] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+[Mon Feb 26 10:21:09.669907 2018] [php7:notice] [pid 491] [client 127.0.0.1:65404] PHP Notice:  Undefined offset: 4 in /Library/WebServer/Documents/miniduke_interface/map.php on line 237
+[Mon Feb 26 10:21:09.669958 2018] [php7:notice] [pid 491] [client 127.0.0.1:65404] PHP Stack trace:
+[Mon Feb 26 10:21:09.670006 2018] [php7:notice] [pid 491] [client 127.0.0.1:65404] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+127.0.0.1 - - [26/Feb/2018:10:21:09 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 27459
+[Mon Feb 26 10:21:22.365696 2018] [php7:notice] [pid 840] [client 127.0.0.1:65407] PHP Notice:  Undefined offset: 3 in /Library/WebServer/Documents/miniduke_interface/map.php on line 237
+[Mon Feb 26 10:21:22.365883 2018] [php7:notice] [pid 840] [client 127.0.0.1:65407] PHP Stack trace:
+[Mon Feb 26 10:21:22.365919 2018] [php7:notice] [pid 840] [client 127.0.0.1:65407] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+127.0.0.1 - - [26/Feb/2018:10:21:22 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 26475
+[Mon Feb 26 10:24:27.015178 2018] [php7:notice] [pid 847] [client 127.0.0.1:65441] PHP Notice:  Undefined offset: 3 in /Library/WebServer/Documents/miniduke_interface/map.php on line 237
+[Mon Feb 26 10:24:27.015590 2018] [php7:notice] [pid 847] [client 127.0.0.1:65441] PHP Stack trace:
+[Mon Feb 26 10:24:27.015680 2018] [php7:notice] [pid 847] [client 127.0.0.1:65441] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0
+127.0.0.1 - - [26/Feb/2018:10:24:27 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 26475
+127.0.0.1 - - [26/Feb/2018:10:24:50 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 25762
+127.0.0.1 - - [26/Feb/2018:10:25:02 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 22999
+127.0.0.1 - - [26/Feb/2018:10:25:26 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 22998
+127.0.0.1 - - [26/Feb/2018:10:27:05 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 22998
+127.0.0.1 - - [26/Feb/2018:10:27:20 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 22998
+127.0.0.1 - - [26/Feb/2018:10:27:51 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 22998
+127.0.0.1 - - [26/Feb/2018:10:28:00 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 22998
+127.0.0.1 - - [26/Feb/2018:10:28:23 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 22998
+127.0.0.1 - - [26/Feb/2018:10:28:32 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 22998
+127.0.0.1 - - [26/Feb/2018:10:29:30 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24202
+127.0.0.1 - - [26/Feb/2018:10:29:39 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24214
+127.0.0.1 - - [26/Feb/2018:10:29:56 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24194
+127.0.0.1 - - [26/Feb/2018:10:30:13 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24242
+127.0.0.1 - - [26/Feb/2018:10:30:29 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24002
+127.0.0.1 - - [26/Feb/2018:10:30:45 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24202
+127.0.0.1 - - [26/Feb/2018:10:34:46 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24702
+127.0.0.1 - - [26/Feb/2018:10:35:11 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24702
+[Mon Feb 26 10:35:47.557953 2018] [php7:notice] [pid 491] [client 127.0.0.1:65522] PHP Parse error:  syntax error, unexpected '.' in /Library/WebServer/Documents/miniduke_interface/map.php on line 246
+127.0.0.1 - - [26/Feb/2018:10:35:47 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 406
+[Mon Feb 26 10:36:00.670546 2018] [php7:notice] [pid 840] [client 127.0.0.1:65525] PHP Parse error:  syntax error, unexpected ''</td><td>'' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in /Library/WebServer/Documents/miniduke_interface/map.php on line 246
+127.0.0.1 - - [26/Feb/2018:10:36:00 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 479
+127.0.0.1 - - [26/Feb/2018:10:36:25 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24778
+127.0.0.1 - - [26/Feb/2018:10:36:53 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24778
+127.0.0.1 - - [26/Feb/2018:10:37:31 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24792
+127.0.0.1 - - [26/Feb/2018:10:38:01 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24820
+127.0.0.1 - - [26/Feb/2018:10:44:44 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24819
+127.0.0.1 - - [26/Feb/2018:10:46:51 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24819
+[Mon Feb 26 10:47:11.221448 2018] [php7:notice] [pid 1624] [client 127.0.0.1:49218] PHP Warning:  file_put_contents(topics_conf/etat_civil.conf.json): failed to open stream: Permission denied in /Library/WebServer/Documents/miniduke_interface/fetch.php on line 61, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 10:47:11.221698 2018] [php7:notice] [pid 1624] [client 127.0.0.1:49218] PHP Stack trace:, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 10:47:11.221754 2018] [php7:notice] [pid 1624] [client 127.0.0.1:49218] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/fetch.php:0, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 10:47:11.221805 2018] [php7:notice] [pid 1624] [client 127.0.0.1:49218] PHP   2. file_put_contents() /Library/WebServer/Documents/miniduke_interface/fetch.php:61, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 10:47:11.270358 2018] [php7:notice] [pid 1624] [client 127.0.0.1:49218] PHP Fatal error:  Uncaught Yosymfony\\Toml\\Exception\\ParseException: The key "launcher.distant" has already been defined previously in "config.toml". in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php:86\nStack trace:\n#0 /Library/WebServer/Documents/miniduke_interface/fetch.php(64): Yosymfony\\Toml\\Toml::parseFile('config.toml')\n#1 {main}\n  thrown in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php on line 86, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:10:47:11 +0100] "POST /fetch.php HTTP/1.1" 200 11004
+[Mon Feb 26 10:48:06.413296 2018] [php7:notice] [pid 846] [client 127.0.0.1:49225] PHP Warning:  file_put_contents(topics_conf/etat_civil.conf.json): failed to open stream: Permission denied in /Library/WebServer/Documents/miniduke_interface/fetch.php on line 61, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 10:48:06.413471 2018] [php7:notice] [pid 846] [client 127.0.0.1:49225] PHP Stack trace:, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 10:48:06.413506 2018] [php7:notice] [pid 846] [client 127.0.0.1:49225] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/fetch.php:0, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 10:48:06.413537 2018] [php7:notice] [pid 846] [client 127.0.0.1:49225] PHP   2. file_put_contents() /Library/WebServer/Documents/miniduke_interface/fetch.php:61, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 10:48:06.441291 2018] [php7:notice] [pid 846] [client 127.0.0.1:49225] PHP Fatal error:  Uncaught Yosymfony\\Toml\\Exception\\ParseException: The key "launcher.distant" has already been defined previously in "config.toml". in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php:86\nStack trace:\n#0 /Library/WebServer/Documents/miniduke_interface/fetch.php(64): Yosymfony\\Toml\\Toml::parseFile('config.toml')\n#1 {main}\n  thrown in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php on line 86, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:10:48:06 +0100] "POST /fetch.php HTTP/1.1" 200 10256
+[Mon Feb 26 10:48:55.935948 2018] [php7:notice] [pid 491] [client 127.0.0.1:49228] PHP Warning:  file_put_contents(topics_conf/etat_civil.conf.json): failed to open stream: Permission denied in /Library/WebServer/Documents/miniduke_interface/fetch.php on line 60, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 10:48:55.936470 2018] [php7:notice] [pid 491] [client 127.0.0.1:49228] PHP Stack trace:, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 10:48:55.936509 2018] [php7:notice] [pid 491] [client 127.0.0.1:49228] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/fetch.php:0, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 10:48:55.936544 2018] [php7:notice] [pid 491] [client 127.0.0.1:49228] PHP   2. file_put_contents() /Library/WebServer/Documents/miniduke_interface/fetch.php:60, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 10:48:55.959475 2018] [php7:notice] [pid 491] [client 127.0.0.1:49228] PHP Fatal error:  Uncaught Yosymfony\\Toml\\Exception\\ParseException: The key "launcher.distant" has already been defined previously in "config.toml". in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php:86\nStack trace:\n#0 /Library/WebServer/Documents/miniduke_interface/fetch.php(63): Yosymfony\\Toml\\Toml::parseFile('config.toml')\n#1 {main}\n  thrown in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php on line 86, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:10:48:55 +0100] "POST /fetch.php HTTP/1.1" 200 9627
+[Mon Feb 26 10:50:02.628042 2018] [php7:notice] [pid 840] [client 127.0.0.1:49241] PHP Fatal error:  Uncaught Yosymfony\\Toml\\Exception\\ParseException: The key "launcher.distant" has already been defined previously in "config.toml". in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php:86\nStack trace:\n#0 /Library/WebServer/Documents/miniduke_interface/fetch.php(63): Yosymfony\\Toml\\Toml::parseFile('config.toml')\n#1 {main}\n  thrown in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php on line 86, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:10:50:02 +0100] "POST /fetch.php HTTP/1.1" 200 8165
+[Mon Feb 26 10:52:06.616279 2018] [php7:notice] [pid 847] [client 127.0.0.1:49308] PHP Fatal error:  Uncaught Yosymfony\\Toml\\Exception\\ParseException: The key "launcher.distant" has already been defined previously in "config.toml". in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php:86\nStack trace:\n#0 /Library/WebServer/Documents/miniduke_interface/fetch.php(64): Yosymfony\\Toml\\Toml::parseFile('config.toml')\n#1 {main}\n  thrown in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php on line 86, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:10:52:06 +0100] "POST /fetch.php HTTP/1.1" 200 8121
+127.0.0.1 - - [26/Feb/2018:10:52:27 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24805
+127.0.0.1 - - [26/Feb/2018:10:55:27 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24556
+127.0.0.1 - - [26/Feb/2018:10:55:47 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 27108
+127.0.0.1 - - [26/Feb/2018:10:56:14 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 27108
+127.0.0.1 - - [26/Feb/2018:10:56:25 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 27108
+127.0.0.1 - - [26/Feb/2018:10:58:05 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 27146
+127.0.0.1 - - [26/Feb/2018:10:58:15 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24594
+127.0.0.1 - - [26/Feb/2018:11:00:14 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24630
+127.0.0.1 - - [26/Feb/2018:11:00:30 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24647
+127.0.0.1 - - [26/Feb/2018:11:00:57 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24647
+127.0.0.1 - - [26/Feb/2018:11:01:03 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24647
+127.0.0.1 - - [26/Feb/2018:11:01:22 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24469
+127.0.0.1 - - [26/Feb/2018:11:01:25 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24469
+127.0.0.1 - - [26/Feb/2018:11:01:27 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24469
+127.0.0.1 - - [26/Feb/2018:11:03:21 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24398
+127.0.0.1 - - [26/Feb/2018:11:03:23 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24398
+127.0.0.1 - - [26/Feb/2018:11:03:24 +0100] "GET /map.php?topic=reconia HTTP/1.1" 200 3613
+127.0.0.1 - - [26/Feb/2018:11:03:35 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24398
+[Mon Feb 26 11:27:12.349870 2018] [php7:notice] [pid 847] [client 127.0.0.1:49936] PHP Fatal error:  Uncaught Yosymfony\\Toml\\Exception\\ParseException: The key "launcher.distant" has already been defined previously in "config.toml". in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php:86\nStack trace:\n#0 /Library/WebServer/Documents/miniduke_interface/map.php(48): Yosymfony\\Toml\\Toml::parseFile('config.toml')\n#1 {main}\n  thrown in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php on line 86, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:11:27:12 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 2043
+[Mon Feb 26 11:29:46.016172 2018] [php7:notice] [pid 1624] [client 127.0.0.1:49965] PHP Fatal error:  Uncaught Yosymfony\\Toml\\Exception\\ParseException: The key "launcher.distant" has already been defined previously in "config.toml". in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php:86\nStack trace:\n#0 /Library/WebServer/Documents/miniduke_interface/map.php(48): Yosymfony\\Toml\\Toml::parseFile('config.toml')\n#1 {main}\n  thrown in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php on line 86, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:11:29:45 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 2043
+[Mon Feb 26 11:29:48.935909 2018] [php7:notice] [pid 1624] [client 127.0.0.1:49965] PHP Fatal error:  Uncaught Yosymfony\\Toml\\Exception\\ParseException: The key "launcher.distant" has already been defined previously in "config.toml". in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php:86\nStack trace:\n#0 /Library/WebServer/Documents/miniduke_interface/map.php(48): Yosymfony\\Toml\\Toml::parseFile('config.toml')\n#1 {main}\n  thrown in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php on line 86, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:11:29:48 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 2043
+[Mon Feb 26 11:30:06.699951 2018] [php7:notice] [pid 846] [client 127.0.0.1:49967] PHP Fatal error:  Uncaught Yosymfony\\Toml\\Exception\\ParseException: The key "launcher.distant" has already been defined previously in "config.toml". in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php:86\nStack trace:\n#0 /Library/WebServer/Documents/miniduke_interface/map.php(48): Yosymfony\\Toml\\Toml::parseFile('config.toml')\n#1 {main}\n  thrown in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php on line 86, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:11:30:06 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 2043
+[Mon Feb 26 11:32:11.687472 2018] [php7:notice] [pid 491] [client 127.0.0.1:50032] PHP Notice:  Array to string conversion in /Library/WebServer/Documents/miniduke_interface/map.php on line 73, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 11:32:11.687763 2018] [php7:notice] [pid 491] [client 127.0.0.1:50032] PHP Stack trace:, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 11:32:11.687800 2018] [php7:notice] [pid 491] [client 127.0.0.1:50032] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 11:32:11.687834 2018] [php7:notice] [pid 491] [client 127.0.0.1:50032] PHP   2. PDOStatement->execute() /Library/WebServer/Documents/miniduke_interface/map.php:73, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:11:32:11 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 5420
+[Mon Feb 26 11:32:26.656467 2018] [php7:notice] [pid 840] [client 127.0.0.1:50034] PHP Fatal error:  Uncaught Yosymfony\\Toml\\Exception\\ParseException: The key "launcher.distant" has already been defined previously in "config.toml". in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php:86\nStack trace:\n#0 /Library/WebServer/Documents/miniduke_interface/map.php(48): Yosymfony\\Toml\\Toml::parseFile('config.toml')\n#1 {main}\n  thrown in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php on line 86, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:11:32:26 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 2043
+[Mon Feb 26 11:32:36.979139 2018] [php7:notice] [pid 847] [client 127.0.0.1:50037] PHP Fatal error:  Uncaught Yosymfony\\Toml\\Exception\\ParseException: The key "launcher.distant" has already been defined previously in "config.toml". in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php:86\nStack trace:\n#0 /Library/WebServer/Documents/miniduke_interface/map.php(48): Yosymfony\\Toml\\Toml::parseFile('config.toml')\n#1 {main}\n  thrown in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php on line 86, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:11:32:36 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 2043
+[Mon Feb 26 11:33:00.311688 2018] [php7:notice] [pid 1624] [client 127.0.0.1:50040] PHP Fatal error:  Uncaught Yosymfony\\Toml\\Exception\\ParseException: The key "launcher.distant" has already been defined previously in "config.toml". in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php:86\nStack trace:\n#0 /Library/WebServer/Documents/miniduke_interface/map.php(48): Yosymfony\\Toml\\Toml::parseFile('config.toml')\n#1 {main}\n  thrown in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php on line 86, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:11:33:00 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 2043
+[Mon Feb 26 11:33:22.621295 2018] [php7:notice] [pid 846] [client 127.0.0.1:50045] PHP Fatal error:  Uncaught Yosymfony\\Toml\\Exception\\ParseException: The key "launcher.distant" has already been defined previously in "config.toml". in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php:86\nStack trace:\n#0 /Library/WebServer/Documents/miniduke_interface/map.php(48): Yosymfony\\Toml\\Toml::parseFile('config.toml')\n#1 {main}\n  thrown in /Library/WebServer/Documents/miniduke_interface/vendor/yosymfony/toml/src/Toml.php on line 86, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:11:33:22 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 2043
+127.0.0.1 - - [26/Feb/2018:11:35:21 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4001
+127.0.0.1 - - [26/Feb/2018:11:35:31 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4001
+127.0.0.1 - - [26/Feb/2018:11:35:36 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4001
+127.0.0.1 - - [26/Feb/2018:11:36:02 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4001
+[Mon Feb 26 11:39:41.209612 2018] [php7:notice] [pid 846] [client 127.0.0.1:50112] PHP Notice:  Array to string conversion in /Library/WebServer/Documents/miniduke_interface/map.php on line 73, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 11:39:41.210346 2018] [php7:notice] [pid 846] [client 127.0.0.1:50112] PHP Stack trace:, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 11:39:41.210434 2018] [php7:notice] [pid 846] [client 127.0.0.1:50112] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 11:39:41.210513 2018] [php7:notice] [pid 846] [client 127.0.0.1:50112] PHP   2. PDOStatement->execute() /Library/WebServer/Documents/miniduke_interface/map.php:73, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:11:39:41 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 5456
+[Mon Feb 26 11:41:29.782419 2018] [php7:notice] [pid 491] [client 127.0.0.1:50125] PHP Notice:  Array to string conversion in /Library/WebServer/Documents/miniduke_interface/map.php on line 73, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 11:41:29.783521 2018] [php7:notice] [pid 491] [client 127.0.0.1:50125] PHP Stack trace:, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 11:41:29.783717 2018] [php7:notice] [pid 491] [client 127.0.0.1:50125] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 11:41:29.783826 2018] [php7:notice] [pid 491] [client 127.0.0.1:50125] PHP   2. PDOStatement->execute() /Library/WebServer/Documents/miniduke_interface/map.php:73, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:11:41:29 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 5451
+127.0.0.1 - - [26/Feb/2018:12:17:29 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4001
+127.0.0.1 - - [26/Feb/2018:12:17:33 +0100] "GET /map.php?topic=reconia HTTP/1.1" 200 3613
+127.0.0.1 - - [26/Feb/2018:12:17:34 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24184
+127.0.0.1 - - [26/Feb/2018:12:17:45 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24184
+127.0.0.1 - - [26/Feb/2018:12:18:34 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24398
+[Mon Feb 26 12:18:35.616268 2018] [php7:notice] [pid 1624] [client 127.0.0.1:50691] PHP Notice:  Array to string conversion in /Library/WebServer/Documents/miniduke_interface/map.php on line 77, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 12:18:35.616827 2018] [php7:notice] [pid 1624] [client 127.0.0.1:50691] PHP Stack trace:, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 12:18:35.616913 2018] [php7:notice] [pid 1624] [client 127.0.0.1:50691] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0, referer: http://reconia.loc/map.php?topic=etat_civil
+[Mon Feb 26 12:18:35.616992 2018] [php7:notice] [pid 1624] [client 127.0.0.1:50691] PHP   2. PDOStatement->execute() /Library/WebServer/Documents/miniduke_interface/map.php:77, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [26/Feb/2018:12:18:35 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 5645
+127.0.0.1 - - [27/Feb/2018:14:02:50 +0100] "GET / HTTP/1.1" 200 5159
+127.0.0.1 - - [27/Feb/2018:14:02:50 +0100] "GET /icons/blank.gif HTTP/1.1" 200 148
+127.0.0.1 - - [27/Feb/2018:14:02:53 +0100] "GET / HTTP/1.1" 200 5159
+127.0.0.1 - - [27/Feb/2018:14:02:54 +0100] "GET / HTTP/1.1" 200 5159
+127.0.0.1 - - [27/Feb/2018:14:02:59 +0100] "GET /index.css HTTP/1.1" 304 -
+127.0.0.1 - - [27/Feb/2018:14:02:59 +0100] "GET /tune.js HTTP/1.1" 304 -
+127.0.0.1 - - [27/Feb/2018:14:02:59 +0100] "GET /css/bootstrap.min.css HTTP/1.1" 304 -
+127.0.0.1 - - [27/Feb/2018:14:02:59 +0100] "GET /map.php HTTP/1.1" 200 3613
+127.0.0.1 - - [27/Feb/2018:14:03:07 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24398
+[Tue Feb 27 14:03:13.182800 2018] [php7:notice] [pid 840] [client 127.0.0.1:56161] PHP Notice:  Undefined offset: 0 in /Library/WebServer/Documents/miniduke_interface/map.php on line 77, referer: http://reconia.loc/map.php?topic=etat_civil
+[Tue Feb 27 14:03:13.183715 2018] [php7:notice] [pid 840] [client 127.0.0.1:56161] PHP Stack trace:, referer: http://reconia.loc/map.php?topic=etat_civil
+[Tue Feb 27 14:03:13.183803 2018] [php7:notice] [pid 840] [client 127.0.0.1:56161] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [27/Feb/2018:14:03:13 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 5427
+[Tue Feb 27 14:03:57.137714 2018] [php7:notice] [pid 847] [client 127.0.0.1:56167] PHP Notice:  Undefined offset: 0 in /Library/WebServer/Documents/miniduke_interface/map.php on line 77, referer: http://reconia.loc/map.php?topic=etat_civil
+[Tue Feb 27 14:03:57.138066 2018] [php7:notice] [pid 847] [client 127.0.0.1:56167] PHP Stack trace:, referer: http://reconia.loc/map.php?topic=etat_civil
+[Tue Feb 27 14:03:57.138122 2018] [php7:notice] [pid 847] [client 127.0.0.1:56167] PHP   1. {main}() /Library/WebServer/Documents/miniduke_interface/map.php:0, referer: http://reconia.loc/map.php?topic=etat_civil
+127.0.0.1 - - [27/Feb/2018:14:03:57 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 5427
+127.0.0.1 - - [27/Feb/2018:14:04:49 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4669
+127.0.0.1 - - [27/Feb/2018:14:07:47 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4195
+127.0.0.1 - - [27/Feb/2018:14:08:20 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4195
+127.0.0.1 - - [27/Feb/2018:14:08:35 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4195
+127.0.0.1 - - [27/Feb/2018:14:09:44 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4669
+127.0.0.1 - - [27/Feb/2018:14:10:56 +0100] "GET /topic.php HTTP/1.1" 200 4867
+127.0.0.1 - - [27/Feb/2018:14:11:02 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24184
+127.0.0.1 - - [27/Feb/2018:14:11:27 +0100] "POST /fetch.php HTTP/1.1" 200 6771
+127.0.0.1 - - [27/Feb/2018:14:11:44 +0100] "GET /map.php?topic=etat_civil HTTP/1.1" 200 24404
+127.0.0.1 - - [27/Feb/2018:14:11:45 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4669
+127.0.0.1 - - [27/Feb/2018:14:14:08 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4669
+127.0.0.1 - - [27/Feb/2018:14:15:24 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4195
+127.0.0.1 - - [27/Feb/2018:14:15:30 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4669
+127.0.0.1 - - [27/Feb/2018:14:18:35 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4669
+127.0.0.1 - - [27/Feb/2018:14:40:43 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4934
+127.0.0.1 - - [27/Feb/2018:14:46:11 +0100] "GET /map.php?index=etat_civil HTTP/1.1" 200 4934
+127.0.0.1 - - [27/Feb/2018:14:52:39 +0100] "GET /map.php?topic=reconia HTTP/1.1" 200 3613
+127.0.0.1 - - [27/Feb/2018:14:52:41 +0100] "GET /topic.php HTTP/1.1" 200 4867

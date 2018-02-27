@@ -13,7 +13,10 @@ $topics = [];
 if ($handle = opendir('./topics_conf/')) {
     while (false !== ($entry = readdir($handle))) {
         if ($entry != "." && $entry != "..") {
-            $topics[] = explode('.', $entry)[0]; // Get the name of the file
+            $fileExplode = explode('.', $entry);
+
+            if (!isset($fileExplode[2])) // If there isn't a 'json' at the end
+                $topics[] = $fileExplode[0]; // Get the name of the file
         }
     }
     closedir($handle);
