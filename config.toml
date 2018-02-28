@@ -23,7 +23,6 @@ topics = ["reconia"]
 distant_launcher = false
 
     # Il est conseillé de donner le path absolu
-    # Sinon, partez du dossier home du user
     # Exemple: "/home/root/miniduke/"
     [launcher.distant]
     host = "192.168.0.237"
@@ -31,9 +30,6 @@ distant_launcher = false
     path = "/data/reconia/"
 
     # Il est conseillé de donner le path absolu
-    # Sinon, partez du dossier "root" de l'interface
-    # Si il est à la racine du dossier de l'interface, laissez l'espace vide
-    # Exemple: "/exec/"
     [launcher.local]
     path = "/Library/WebServer/Documents/miniduke_interface/"
 

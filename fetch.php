@@ -108,9 +108,9 @@ var_dump($configuration['kafka']['hosts']);
 
         $filter .= add_field_logstash($merged, 'fields', 'new_key');
 //                    add_field_logstash($merged, 'data', 'new_key');
-        $filter .= add_field_logstash($merged, 'comparators', 'comparator');
+        $filter .= add_field_logstash($merged, 'comparator', 'comparator');
 
-        $filter .= '"data" => [';
+      /*  $filter .= '"data" => [';
         $comma = 0;
         foreach ($merged as $item) {
             $filter .= '"%{' . $item['key'] . '}"';
@@ -118,7 +118,7 @@ var_dump($configuration['kafka']['hosts']);
             $comma++;
         }
         $filter .= ']
-                    ';
+                    ';*/
 
         $filter .= '"weight" => [';
         $comma = 0;
@@ -140,7 +140,7 @@ var_dump($configuration['kafka']['hosts']);
                     ';
 
         $filter .= 'prune {
-                        whitelist_names => ["fields", "comparator", "data", "weight", "filters", "timestamp"]
+                        whitelist_names => ["fields", "comparator", "data", "weight", "filters", "threshold", "timestamp"]
                     }
                     ';
 
