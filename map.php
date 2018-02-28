@@ -13,6 +13,9 @@ error_reporting(E_ALL);
 include 'vendor/autoload.php';
 use Toml\Parser;
 
+exec('whoami', $out);
+var_dump($out);
+
 $topics = [];
 
 if ($handle = opendir('./topics_conf/')) {
@@ -45,35 +48,53 @@ if (isset($_GET['topic'])) {
     }
 }
 
-if (isset($_GET['index']) && in_array($_GET['index'], $topics)) {
+if (isset($_GET['index']) && in_array($_GET['topic'], $topics)) {
     $configuration = Parser::fromFile('config.toml');
 
     $pdo = new PDO($configuration["database"]["connection"]);
 
+    if ($_GET['index'] == 'restart' || $_GET['index'] == 'stop') {
+        $logstashInstancesSql= $pdo->prepare('select * from logstash_instances where name=?');
+        $logstashInstancesSql->execute([$_GET['topic']]);
+        $logstashInstance = $logstashInstancesSql->fetch();
+
+        if ($configuration["launcher"]["distant_launcher"]) {
+            var_dump($logstashInstance);
+            echo 'ssh '.$configuration["launcher"]["distant"]["user"].'@'.$configuration["launcher"]["distant"]["host"].'
+            "sh '.$configuration["launcher"]["distant"]["path"].'stop_logstash.sh '.$logstashInstance['name'].' '.$logstashInstance['pid'].'"';
+
+            exec('ssh '.$configuration["launcher"]["distant"]["user"].'@'.$configuration["launcher"]["distant"]["host"].' "sh '.$configuration["launcher"]["distant"]["path"].'stop_logstash.sh '.$logstashInstance['name'].' '.$logstashInstance['pid'].'"', $pid);
+        }
+        else {
+            echo 'sh ' . $configuration["launcher"]["local"]["path"] . 'stop_logstash.sh '.$logstashInstance['pid'];
+            exec('sh ' . $configuration["launcher"]["local"]["path"] . 'stop_logstash.sh '.$logstashInstance['pid'], $pid);
+        }
+
+        $logstashInstancesSql= $pdo->prepare('delete from logstash_instances where name=?');
+        $logstashInstancesSql->execute([$_GET['topic']]);
+    }
+
     $logstashInstancesSql= $pdo->prepare('select count(*) from logstash_instances where name=?');
-    $logstashInstancesSql->execute([$_GET['index']]);
+    $logstashInstancesSql->execute([$_GET['topic']]);
     $logstashInstancesCount = $logstashInstancesSql->fetch();
 
-
-    if ($logstashInstancesCount[0] == 0) {
+    if (($_GET['index'] == 'start' || $_GET['index'] == 'restart') && $logstashInstancesCount[0] == 0) {
 
         if ($configuration["launcher"]["distant_launcher"]) {
             echo 'ssh '.$configuration["launcher"]["distant"]["user"].'@'.$configuration["launcher"]["distant"]["host"].'
-            "sh '.$configuration["launcher"]["distant"]["path"].'start_logstash.sh '.$_GET['index'].'"';
-            exec('ssh '.$configuration["launcher"]["distant"]["user"].'@'.$configuration["launcher"]["distant"]["host"].' "sh '.$configuration["launcher"]["distant"]["path"].'start_logstash.sh '.$_GET['index'].'"', $pid);
+            "sh '.$configuration["launcher"]["distant"]["path"].'start_logstash.sh '.$_GET['topic'].'"';
+            exec('ssh '.$configuration["launcher"]["distant"]["user"].'@'.$configuration["launcher"]["distant"]["host"].' "sh '.$configuration["launcher"]["distant"]["path"].'start_logstash.sh '.$_GET['topic'].'"', $pid);
         }
         else {
-            echo 'sh ' . $configuration["launcher"]["local"]["path"] . 'start_logstash.sh ' . $_GET['index'];
-            exec('sh ' . $configuration["launcher"]["local"]["path"] . 'start_logstash.sh ' . $_GET['index'], $pid);
+            echo 'sh ' . $configuration["launcher"]["local"]["path"] . 'start_logstash.sh ' . $_GET['topic'];
+            exec('sh ' . $configuration["launcher"]["local"]["path"] . 'start_logstash.sh ' . $_GET['topic'], $pid);
 
         }
 
         if ((int)$pid[0] > 0) {
             $logstashInstancesInsert = $pdo->prepare('INSERT INTO logstash_instances VALUES (?, ?)');
-            var_dump($logstashInstancesInsert->execute([$_GET['index'], (int)$pid[0]]));
+            var_dump($logstashInstancesInsert->execute([$_GET['topic'], (int)$pid[0]]));
         }
-
-        //header('Location: map.php?topic='.$_GET['index']);
     }
 }
 
@@ -87,11 +108,6 @@ $map_options = json_decode($string, true);
 <?php
 include 'commons/head.php';
 include 'commons/header.php';
-?>
-
-<?php
-
-
 ?>
 <main role="main">
 
@@ -214,8 +230,15 @@ include 'commons/header.php';
 
                     if ($logstashInstance[0] == 0) {
                         ?>
-                        <a href="map.php?index=<?php echo $_GET['topic']; ?>">
+                        <a href="map.php?index=start&topic=<?php echo $_GET['topic']; ?>">
                             <button type="button" class="btn btn-success btn-lg">Index data</button>
+                        </a>
+                        <?php
+                    }
+                    else {
+                        ?>
+                        <a href="map.php?index=restart&topic=<?php echo $_GET['topic']; ?>">
+                            <button type="button" class="btn btn-info btn-lg">Restart index</button>
                         </a>
                         <?php
                     }

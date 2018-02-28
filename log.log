@@ -257,3 +257,4275 @@ nohup: can't detach from console: No such file or directory
 [2018-02-27T14:45:51,399][WARN ][logstash.agent           ] stopping pipeline {:id=>"main"}
 [2018-02-27T14:45:51,559][FATAL][logstash.runner          ] SIGINT received. Terminating immediately..
 nohup: can't detach from console: No such file or directory
+nohup: can't detach from console: No such file or directory
+Sending Logstash's logs to /usr/local/logstash-5.6.5/logs which is now configured via log4j2.properties
+[2018-02-27T16:26:29,610][INFO ][logstash.modules.scaffold] Initializing module {:module_name=>"netflow", :directory=>"/usr/local/logstash-5.6.5/modules/netflow/configuration"}
+[2018-02-27T16:26:29,615][INFO ][logstash.modules.scaffold] Initializing module {:module_name=>"fb_apache", :directory=>"/usr/local/logstash-5.6.5/modules/fb_apache/configuration"}
+[2018-02-27T16:26:30,633][INFO ][logstash.outputs.elasticsearch] Elasticsearch pool URLs updated {:changes=>{:removed=>[], :added=>[http://localhost:9200/]}}
+[2018-02-27T16:26:30,635][INFO ][logstash.outputs.elasticsearch] Running health check to see if an Elasticsearch connection is working {:healthcheck_url=>http://localhost:9200/, :path=>"/"}
+[2018-02-27T16:26:30,754][WARN ][logstash.outputs.elasticsearch] Restored connection to ES instance {:url=>"http://localhost:9200/"}
+[2018-02-27T16:26:30,812][INFO ][logstash.outputs.elasticsearch] Using mapping template from {:path=>nil}
+[2018-02-27T16:26:30,816][INFO ][logstash.outputs.elasticsearch] Attempting to install template {:manage_template=>{"template"=>"logstash-*", "version"=>50001, "settings"=>{"index.refresh_interval"=>"5s"}, "mappings"=>{"_default_"=>{"_all"=>{"enabled"=>true, "norms"=>false}, "dynamic_templates"=>[{"message_field"=>{"path_match"=>"message", "match_mapping_type"=>"string", "mapping"=>{"type"=>"text", "norms"=>false}}}, {"string_fields"=>{"match"=>"*", "match_mapping_type"=>"string", "mapping"=>{"type"=>"text", "norms"=>false, "fields"=>{"keyword"=>{"type"=>"keyword", "ignore_above"=>256}}}}}], "properties"=>{"@timestamp"=>{"type"=>"date", "include_in_all"=>false}, "@version"=>{"type"=>"keyword", "include_in_all"=>false}, "geoip"=>{"dynamic"=>true, "properties"=>{"ip"=>{"type"=>"ip"}, "location"=>{"type"=>"geo_point"}, "latitude"=>{"type"=>"half_float"}, "longitude"=>{"type"=>"half_float"}}}}}}}}
+[2018-02-27T16:26:30,821][INFO ][logstash.outputs.elasticsearch] New Elasticsearch output {:class=>"LogStash::Outputs::ElasticSearch", :hosts=>["//localhost:9200"]}
+[2018-02-27T16:26:30,938][INFO ][logstash.pipeline        ] Starting pipeline {"id"=>"main", "pipeline.workers"=>4, "pipeline.batch.size"=>125, "pipeline.batch.delay"=>5, "pipeline.max_inflight"=>500}
+[2018-02-27T16:26:30,943][INFO ][logstash.pipeline        ] Pipeline main started
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/jmartell/.m2/repository/org/apache/logging/log4j/log4j-slf4j-impl/2.6.2/log4j-slf4j-impl-2.6.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/logstash-5.6.5/vendor/bundle/jruby/1.9/gems/logstash-input-kafka-5.1.11/vendor/jar-dependencies/runtime-jars/log4j-slf4j-impl-2.8.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+[2018-02-27T16:26:31,014][INFO ][logstash.agent           ] Successfully started Logstash API endpoint {:port=>9600}
+[2018-02-27T16:26:31,042][INFO ][org.apache.kafka.clients.consumer.ConsumerConfig] ConsumerConfig values: 
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	partition.assignment.strategy = [org.apache.kafka.clients.consumer.RangeAssignor]
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	max.partition.fetch.bytes = 1048576
+	bootstrap.servers = [localhost:9092]
+	ssl.keystore.type = JKS
+	enable.auto.commit = true
+	sasl.mechanism = GSSAPI
+	interceptor.classes = null
+	exclude.internal.topics = true
+	ssl.truststore.password = null
+	client.id = logstash-0
+	ssl.endpoint.identification.algorithm = null
+	max.poll.records = 2147483647
+	check.crcs = true
+	request.timeout.ms = 40000
+	heartbeat.interval.ms = 3000
+	auto.commit.interval.ms = 5000
+	receive.buffer.bytes = 65536
+	ssl.truststore.type = JKS
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	fetch.min.bytes = 1
+	send.buffer.bytes = 131072
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	group.id = logstash
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.trustmanager.algorithm = PKIX
+	ssl.key.password = null
+	fetch.max.wait.ms = 500
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	session.timeout.ms = 30000
+	metrics.num.samples = 2
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.keystore.location = null
+	ssl.cipher.suites = null
+	security.protocol = PLAINTEXT
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	auto.offset.reset = latest
+
+[2018-02-27T16:26:31,098][INFO ][org.apache.kafka.clients.consumer.ConsumerConfig] ConsumerConfig values: 
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	partition.assignment.strategy = [org.apache.kafka.clients.consumer.RangeAssignor]
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	max.partition.fetch.bytes = 1048576
+	bootstrap.servers = [localhost:9092]
+	ssl.keystore.type = JKS
+	enable.auto.commit = true
+	sasl.mechanism = GSSAPI
+	interceptor.classes = null
+	exclude.internal.topics = true
+	ssl.truststore.password = null
+	client.id = logstash-0
+	ssl.endpoint.identification.algorithm = null
+	max.poll.records = 2147483647
+	check.crcs = true
+	request.timeout.ms = 40000
+	heartbeat.interval.ms = 3000
+	auto.commit.interval.ms = 5000
+	receive.buffer.bytes = 65536
+	ssl.truststore.type = JKS
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	fetch.min.bytes = 1
+	send.buffer.bytes = 131072
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	group.id = logstash
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.trustmanager.algorithm = PKIX
+	ssl.key.password = null
+	fetch.max.wait.ms = 500
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	session.timeout.ms = 30000
+	metrics.num.samples = 2
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.keystore.location = null
+	ssl.cipher.suites = null
+	security.protocol = PLAINTEXT
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	auto.offset.reset = latest
+
+[2018-02-27T16:26:31,138][INFO ][org.apache.kafka.common.utils.AppInfoParser] Kafka version : 0.10.0.1
+[2018-02-27T16:26:31,138][INFO ][org.apache.kafka.common.utils.AppInfoParser] Kafka commitId : a7a17cdec9eaa6c5
+[2018-02-27T16:26:31,307][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Discovered coordinator localhost:9092 (id: 2147483647 rack: null) for group logstash.
+[2018-02-27T16:26:31,308][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [] for group logstash
+[2018-02-27T16:26:31,309][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-27T16:26:31,366][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 13
+[2018-02-27T16:26:31,367][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-27T18:16:36,740][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Marking the coordinator localhost:9092 (id: 2147483647 rack: null) dead for group logstash
+[2018-02-27T18:16:36,774][WARN ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Auto offset commit failed for group logstash: Commit offsets failed with retriable exception. You should retry committing offsets.
+[2018-02-27T18:16:36,775][WARN ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Auto offset commit failed for group logstash: Commit offsets failed with retriable exception. You should retry committing offsets.
+[2018-02-27T18:16:37,104][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Discovered coordinator localhost:9092 (id: 2147483647 rack: null) for group logstash.
+[2018-02-27T20:02:04,749][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Marking the coordinator localhost:9092 (id: 2147483647 rack: null) dead for group logstash
+[2018-02-27T20:02:04,773][WARN ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Auto offset commit failed for group logstash: Commit offsets failed with retriable exception. You should retry committing offsets.
+[2018-02-27T20:02:04,773][WARN ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Auto offset commit failed for group logstash: Commit offsets failed with retriable exception. You should retry committing offsets.
+[2018-02-27T20:02:04,954][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Discovered coordinator localhost:9092 (id: 2147483647 rack: null) for group logstash.
+[2018-02-28T10:01:43,000][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Marking the coordinator localhost:9092 (id: 2147483647 rack: null) dead for group logstash
+[2018-02-28T10:01:48,088][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Discovered coordinator localhost:9092 (id: 2147483647 rack: null) for group logstash.
+[2018-02-28T10:01:48,211][WARN ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Auto offset commit failed for group logstash: Commit cannot be completed since the group has already rebalanced and assigned the partitions to another member. This means that the time between subsequent calls to poll() was longer than the configured session.timeout.ms, which typically implies that the poll loop is spending too much time message processing. You can address this either by increasing the session timeout or by reducing the maximum size of batches returned in poll() with max.poll.records.
+[2018-02-28T10:01:48,249][WARN ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Auto offset commit failed for group logstash: Commit cannot be completed since the group has already rebalanced and assigned the partitions to another member. This means that the time between subsequent calls to poll() was longer than the configured session.timeout.ms, which typically implies that the poll loop is spending too much time message processing. You can address this either by increasing the session timeout or by reducing the maximum size of batches returned in poll() with max.poll.records.
+[2018-02-28T10:01:48,250][WARN ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Auto offset commit failed for group logstash: Commit cannot be completed since the group has already rebalanced and assigned the partitions to another member. This means that the time between subsequent calls to poll() was longer than the configured session.timeout.ms, which typically implies that the poll loop is spending too much time message processing. You can address this either by increasing the session timeout or by reducing the maximum size of batches returned in poll() with max.poll.records.
+[2018-02-28T10:01:48,251][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T10:01:48,252][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T10:01:48,276][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T10:01:48,332][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 15
+[2018-02-28T10:01:48,333][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T10:19:45,733][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Marking the coordinator localhost:9092 (id: 2147483647 rack: null) dead for group logstash
+[2018-02-28T10:19:45,849][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Discovered coordinator localhost:9092 (id: 2147483647 rack: null) for group logstash.
+[2018-02-28T11:11:35,181][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Marking the coordinator localhost:9092 (id: 2147483647 rack: null) dead for group logstash
+[2018-02-28T11:11:37,003][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Discovered coordinator localhost:9092 (id: 2147483647 rack: null) for group logstash.
+[2018-02-28T15:12:10,413][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Marking the coordinator localhost:9092 (id: 2147483647 rack: null) dead for group logstash
+[2018-02-28T15:16:20,909][WARN ][org.apache.kafka.common.protocol.Errors] Unexpected error code: 38.
+[2018-02-28T15:16:20,913][WARN ][org.apache.kafka.clients.NetworkClient] Error while fetching metadata with correlation id 51254 : {reconia=UNKNOWN}
+[2018-02-28T15:16:21,024][WARN ][org.apache.kafka.clients.NetworkClient] Error while fetching metadata with correlation id 51255 : {reconia=LEADER_NOT_AVAILABLE}
+[2018-02-28T15:16:21,131][WARN ][org.apache.kafka.clients.NetworkClient] Error while fetching metadata with correlation id 51256 : {reconia=LEADER_NOT_AVAILABLE}
+[2018-02-28T15:16:21,236][WARN ][org.apache.kafka.clients.NetworkClient] Error while fetching metadata with correlation id 51257 : {reconia=LEADER_NOT_AVAILABLE}
+[2018-02-28T15:16:21,344][WARN ][org.apache.kafka.clients.NetworkClient] Error while fetching metadata with correlation id 51258 : {reconia=LEADER_NOT_AVAILABLE}
+[2018-02-28T15:16:21,475][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Discovered coordinator localhost:9092 (id: 2147483647 rack: null) for group logstash.
+[2018-02-28T15:16:21,548][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Marking the coordinator localhost:9092 (id: 2147483647 rack: null) dead for group logstash
+[2018-02-28T15:16:21,552][WARN ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Auto offset commit failed for group logstash: Commit offsets failed with retriable exception. You should retry committing offsets.
+[2018-02-28T15:16:21,552][WARN ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Auto offset commit failed for group logstash: Commit offsets failed with retriable exception. You should retry committing offsets.
+[2018-02-28T15:16:21,553][WARN ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Auto offset commit failed for group logstash: Commit offsets failed with retriable exception. You should retry committing offsets.
+[2018-02-28T15:16:21,556][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Discovered coordinator localhost:9092 (id: 2147483647 rack: null) for group logstash.
+[2018-02-28T15:20:57,781][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:20:57,784][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T15:20:57,820][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 16
+[2018-02-28T15:20:57,821][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:24:06,479][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+[2018-02-28T15:24:06,518][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"prenom": "Simon",'
+[2018-02-28T15:24:06,519][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"nom": "Ouellet",'
+[2018-02-28T15:24:06,520][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"mail": "so@minibig.io",'
+[2018-02-28T15:24:06,520][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"age": 40'
+[2018-02-28T15:24:07,148][WARN ][logstash.outputs.elasticsearch] Could not index event to Elasticsearch. {:status=>400, :action=>["index", {:_id=>nil, :_index=>"miniduke", :_type=>"mdm", :_routing=>nil, :pipeline=>"miniduke"}, 2018-02-28T14:24:06.200Z %{host} %{message}], :response=>{"index"=>{"_index"=>"miniduke", "_type"=>"mdm", "_id"=>nil, "status"=>400, "error"=>{"type"=>"illegal_argument_exception", "reason"=>"pipeline with id [miniduke] does not exist"}}}}
+[2018-02-28T15:24:07,151][WARN ][logstash.outputs.elasticsearch] Could not index event to Elasticsearch. {:status=>400, :action=>["index", {:_id=>nil, :_index=>"miniduke", :_type=>"mdm", :_routing=>nil, :pipeline=>"miniduke"}, 2018-02-28T14:24:06.241Z %{host} %{message}], :response=>{"index"=>{"_index"=>"miniduke", "_type"=>"mdm", "_id"=>nil, "status"=>400, "error"=>{"type"=>"illegal_argument_exception", "reason"=>"pipeline with id [miniduke] does not exist"}}}}
+[2018-02-28T15:24:07,153][WARN ][logstash.outputs.elasticsearch] Could not index event to Elasticsearch. {:status=>400, :action=>["index", {:_id=>nil, :_index=>"miniduke", :_type=>"mdm", :_routing=>nil, :pipeline=>"miniduke"}, 2018-02-28T14:24:06.249Z %{host} %{message}], :response=>{"index"=>{"_index"=>"miniduke", "_type"=>"mdm", "_id"=>nil, "status"=>400, "error"=>{"type"=>"illegal_argument_exception", "reason"=>"pipeline with id [miniduke] does not exist"}}}}
+[2018-02-28T15:24:07,155][WARN ][logstash.outputs.elasticsearch] Could not index event to Elasticsearch. {:status=>400, :action=>["index", {:_id=>nil, :_index=>"miniduke", :_type=>"mdm", :_routing=>nil, :pipeline=>"miniduke"}, 2018-02-28T14:24:06.251Z %{host} %{message}], :response=>{"index"=>{"_index"=>"miniduke", "_type"=>"mdm", "_id"=>nil, "status"=>400, "error"=>{"type"=>"illegal_argument_exception", "reason"=>"pipeline with id [miniduke] does not exist"}}}}
+[2018-02-28T15:24:07,173][WARN ][logstash.outputs.elasticsearch] Could not index event to Elasticsearch. {:status=>400, :action=>["index", {:_id=>nil, :_index=>"miniduke", :_type=>"mdm", :_routing=>nil, :pipeline=>"miniduke"}, 2018-02-28T14:24:06.251Z %{host} %{message}], :response=>{"index"=>{"_index"=>"miniduke", "_type"=>"mdm", "_id"=>nil, "status"=>400, "error"=>{"type"=>"illegal_argument_exception", "reason"=>"pipeline with id [miniduke] does not exist"}}}}
+{
+     "@timestamp" => 2018-02-28T14:24:06.200Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:24:06.241Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:24:06.249Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:24:06.251Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:24:06.251Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:26:33,424][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at 'PUT _ingest/pipeline/miniduke'
+[2018-02-28T15:26:33,428][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+[2018-02-28T15:26:33,428][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"description": "miniduke",'
+[2018-02-28T15:26:33,429][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"processors": ['
+[2018-02-28T15:26:33,430][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '{'
+[2018-02-28T15:26:33,430][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"miniduke": {'
+[2018-02-28T15:26:33,430][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"fields": "fields",'
+[2018-02-28T15:26:33,431][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"threshold": "threshold",'
+[2018-02-28T15:26:33,432][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"weight": "weight",'
+[2018-02-28T15:26:33,432][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"data": "data",'
+[2018-02-28T15:26:33,433][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"comparator": "comparator",'
+[2018-02-28T15:26:33,436][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"filters": "filters"'
+[2018-02-28T15:26:33,437][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '}'
+[2018-02-28T15:26:33,438][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '}]'
+[2018-02-28T15:26:33,439][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+{
+     "@timestamp" => 2018-02-28T14:26:33.411Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:33.422Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:33.423Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:33.423Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:33.424Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:33.405Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:33.405Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:33.406Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:33.409Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:33.409Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:33.409Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:33.410Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:33.410Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:33.410Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:33.410Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:26:39,714][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+[2018-02-28T15:26:39,717][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+[2018-02-28T15:26:39,718][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"prenom": "Simon",'
+[2018-02-28T15:26:39,719][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"nom": "Ouellet",'
+[2018-02-28T15:26:39,720][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"mail": "so@minibig.io",'
+[2018-02-28T15:26:39,721][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"age": 40'
+{
+     "@timestamp" => 2018-02-28T14:26:39.701Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:39.704Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:39.705Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:39.705Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:39.706Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:39.707Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:26:40,806][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+{
+     "@timestamp" => 2018-02-28T14:26:40.797Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:26:42,583][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+[2018-02-28T15:26:42,588][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+[2018-02-28T15:26:42,589][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"prenom": "Simon",'
+[2018-02-28T15:26:42,590][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"nom": "Ouellet",'
+[2018-02-28T15:26:42,593][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"mail": "so@minibig.io",'
+[2018-02-28T15:26:42,594][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"age": 40'
+{
+     "@timestamp" => 2018-02-28T14:26:42.567Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:42.567Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:42.568Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:42.569Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:42.571Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:26:42.573Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:26:43,584][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+{
+     "@timestamp" => 2018-02-28T14:26:43.576Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:30:37,265][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:30:37,269][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T15:30:37,276][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 17
+[2018-02-28T15:30:37,276][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:30:58,294][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:30:58,297][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T15:30:58,310][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 18
+[2018-02-28T15:30:58,310][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:32:10,381][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:32:10,382][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T15:32:10,387][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 19
+[2018-02-28T15:32:10,387][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:32:28,401][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:32:28,402][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T15:32:28,413][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 20
+[2018-02-28T15:32:28,414][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:32:42,905][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+{
+     "@timestamp" => 2018-02-28T14:32:42.892Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:32:45,953][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+[2018-02-28T15:32:45,955][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"prenom": "Simon",'
+[2018-02-28T15:32:45,957][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"nom": "Ouellet",'
+[2018-02-28T15:32:45,959][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"mail": "so@minibig.io",'
+[2018-02-28T15:32:45,961][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"age": 40'
+{
+     "@timestamp" => 2018-02-28T14:32:45.944Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:32:45.944Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:32:45.945Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:32:45.945Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:32:45.945Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:32:47,018][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+{
+     "@timestamp" => 2018-02-28T14:32:47.009Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:52:48,435][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+[2018-02-28T15:52:48,439][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+[2018-02-28T15:52:48,439][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+{
+     "@timestamp" => 2018-02-28T14:52:48.410Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:52:48.413Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:52:48.414Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:53:02,029][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+[2018-02-28T15:53:02,062][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"prenom": "Simon",'
+[2018-02-28T15:53:02,064][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"nom": "Ouellet",'
+[2018-02-28T15:53:02,065][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"mail": "so@minibig.io",'
+[2018-02-28T15:53:02,066][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"age": 40'
+[2018-02-28T15:53:02,067][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+{
+     "@timestamp" => 2018-02-28T14:53:02.013Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:53:02.013Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:53:02.014Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:53:02.014Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:53:02.015Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:53:02.018Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:53:42,719][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"data": ["Mickaël", "Coustaty", "mc@minibig.io"],'
+[2018-02-28T15:53:42,719][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"fields": ["first_name", "last_name", "mail"],'
+[2018-02-28T15:53:42,727][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"comparator": ["no.priv.garshol.duke.comparators.Levenshtein",'
+[2018-02-28T15:53:42,728][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"no.priv.garshol.duke.comparators.Levenshtein",'
+[2018-02-28T15:53:42,730][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"no.priv.garshol.duke.comparators.Levenshtein"],'
+[2018-02-28T15:53:42,732][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"filters": ["first_name", "last_name", "mail"],'
+[2018-02-28T15:53:42,733][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"weight": [[0.5, 0.8], [0.5, 0.8], [0.5, 0.8]],'
+[2018-02-28T15:53:42,733][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"threshold": 0.8'
+{
+     "@timestamp" => 2018-02-28T14:53:42.657Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:53:42.664Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:53:42.664Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:53:42.688Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:53:42.688Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:53:42.695Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:53:42.600Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:53:42.608Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:54:02,042][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+[2018-02-28T15:54:02,043][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"prenom": "Simon",'
+[2018-02-28T15:54:02,044][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"nom": "Ouellet",'
+[2018-02-28T15:54:02,045][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"mail": "so@minibig.io",'
+[2018-02-28T15:54:02,046][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"age": 40'
+[2018-02-28T15:54:02,047][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+{
+     "@timestamp" => 2018-02-28T14:54:02.030Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:54:02.030Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:54:02.032Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:54:02.033Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:54:02.033Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:54:02.034Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:54:14,526][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:54:14,531][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T15:54:14,536][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 21
+[2018-02-28T15:54:14,537][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:54:53,564][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:54:53,565][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T15:54:53,570][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 22
+[2018-02-28T15:54:53,570][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:55:07,346][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+[2018-02-28T15:55:07,347][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"prenom": "Simon",'
+[2018-02-28T15:55:07,348][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"nom": "Ouellet",'
+[2018-02-28T15:55:07,348][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"mail": "so@minibig.io",'
+[2018-02-28T15:55:07,349][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"age": 40'
+[2018-02-28T15:55:07,349][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+{
+     "@timestamp" => 2018-02-28T14:55:07.331Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:55:07.332Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:55:07.333Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:55:07.333Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:55:07.334Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:55:07.335Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:56:20,627][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:56:20,637][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T15:56:20,647][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 23
+[2018-02-28T15:56:20,647][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:56:41,661][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:56:41,662][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T15:56:41,671][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 24
+[2018-02-28T15:56:41,672][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:56:41,885][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+[2018-02-28T15:56:41,887][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"prenom": "Simon",'
+[2018-02-28T15:56:41,887][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"nom": "Ouellet",'
+[2018-02-28T15:56:41,888][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"mail": "so@minibig.io",'
+[2018-02-28T15:56:41,888][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"age": 40'
+[2018-02-28T15:56:41,889][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+{
+     "@timestamp" => 2018-02-28T14:56:41.863Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:56:41.867Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:56:41.870Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:56:41.871Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:56:41.872Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:56:41.872Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:56:49,293][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+[2018-02-28T15:56:49,296][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"prenom": "Simon",'
+[2018-02-28T15:56:49,296][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"nom": "Ouellet",'
+[2018-02-28T15:56:49,297][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"mail": "so@minibig.io",'
+[2018-02-28T15:56:49,297][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"age": 40'
+{
+     "@timestamp" => 2018-02-28T14:56:49.282Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:56:49.282Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:56:49.283Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:56:49.284Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:56:49.286Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:56:56,016][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+[2018-02-28T15:56:56,017][ERROR][logstash.filters.ruby    ] Ruby exception occurred: A JSON text must at least contain two octets!
+[2018-02-28T15:56:56,018][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"prenom": "Simon",'
+[2018-02-28T15:56:56,019][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"nom": "Ouellet",'
+[2018-02-28T15:56:56,020][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"mail": "so@minibig.io",'
+[2018-02-28T15:56:56,020][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '"age": 40'
+{
+     "@timestamp" => 2018-02-28T14:56:56.004Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:56:56.004Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:56:56.006Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:56:56.009Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:56:56.009Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:56:56.009Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:57:12.948Z,
+           "data" => [
+        [0] "Simon",
+        [1] nil,
+        [2] nil,
+        [3] nil,
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T14:57:54.381Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] 40,
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T15:58:23,735][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T15:58:23,735][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T15:58:23,740][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 25
+[2018-02-28T15:58:23,740][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:00:38,872][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:00:38,873][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T16:00:38,881][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 26
+[2018-02-28T16:00:38,881][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+{
+     "@timestamp" => 2018-02-28T15:00:58.507Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] 40,
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T16:01:59,940][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:01:59,942][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T16:01:59,947][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 27
+[2018-02-28T16:01:59,948][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:02:17,961][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:02:17,962][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T16:02:17,965][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 28
+[2018-02-28T16:02:17,965][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [] for group logstash
+[2018-02-28T16:04:03,050][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [] for group logstash
+[2018-02-28T16:04:03,052][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T16:04:03,064][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 29
+[2018-02-28T16:04:03,065][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:04:21,080][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:04:21,081][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T16:04:21,083][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 30
+[2018-02-28T16:04:21,083][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+{
+     "@timestamp" => 2018-02-28T15:04:42.502Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] 40,
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T16:05:12,115][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:05:12,115][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T16:05:12,118][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 31
+[2018-02-28T16:05:12,118][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:05:27,127][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:05:27,128][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T16:05:27,132][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 32
+[2018-02-28T16:05:27,132][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [] for group logstash
+[2018-02-28T16:06:45,191][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [] for group logstash
+[2018-02-28T16:06:45,192][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T16:06:45,197][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 33
+[2018-02-28T16:06:45,197][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:07:00,208][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:07:00,208][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T16:07:00,212][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 34
+[2018-02-28T16:07:00,212][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+{
+     "@timestamp" => 2018-02-28T15:07:12.082Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] 40,
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T15:07:31.804Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] 40,
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T16:07:54,265][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:07:54,266][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T16:07:54,271][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 35
+[2018-02-28T16:07:54,272][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:08:21,289][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:08:21,290][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T16:08:21,296][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 36
+[2018-02-28T16:08:21,296][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [] for group logstash
+[2018-02-28T16:22:49,194][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [] for group logstash
+[2018-02-28T16:22:49,199][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T16:22:49,206][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 37
+[2018-02-28T16:22:49,207][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:23:07,217][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:23:07,218][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T16:23:07,223][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 38
+[2018-02-28T16:23:07,223][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+{
+     "@timestamp" => 2018-02-28T15:23:40.171Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] 40,
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T15:23:53.225Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] 40,
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T15:25:04.107Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] 40,
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T16:25:22,326][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Revoking previously assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:25:22,328][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] (Re-)joining group logstash
+[2018-02-28T16:25:22,337][INFO ][org.apache.kafka.clients.consumer.internals.AbstractCoordinator] Successfully joined group logstash with generation 39
+[2018-02-28T16:25:22,338][INFO ][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator] Setting newly assigned partitions [reconia-0] for group logstash
+[2018-02-28T16:50:01,293][WARN ][logstash.outputs.elasticsearch] Could not index event to Elasticsearch. {:status=>400, :action=>["index", {:_id=>nil, :_index=>"miniduke", :_type=>"mdm", :_routing=>nil, :pipeline=>"miniduke"}, 2018-02-28T15:50:00.990Z %{host} %{message}], :response=>{"index"=>{"_index"=>"miniduke", "_type"=>"mdm", "_id"=>nil, "status"=>400, "error"=>{"type"=>"illegal_argument_exception", "reason"=>"pipeline with id [miniduke] does not exist"}}}}
+{
+     "@timestamp" => 2018-02-28T15:50:00.990Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] 40,
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T16:51:06,747][WARN ][logstash.outputs.elasticsearch] Could not index event to Elasticsearch. {:status=>400, :action=>["index", {:_id=>nil, :_index=>"miniduke", :_type=>"mdm", :_routing=>nil, :pipeline=>"miniduke"}, 2018-02-28T15:51:06.656Z %{host} %{message}], :response=>{"index"=>{"_index"=>"miniduke", "_type"=>"mdm", "_id"=>"AWHdHCze0_B5s51V1Ss-", "status"=>400, "error"=>{"type"=>"illegal_argument_exception", "reason"=>"mapper [data] of different type, current_type [long], merged_type [text]"}}}}
+{
+     "@timestamp" => 2018-02-28T15:51:06.656Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] 40,
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T16:51:35,068][WARN ][logstash.outputs.elasticsearch] Could not index event to Elasticsearch. {:status=>400, :action=>["index", {:_id=>nil, :_index=>"miniduke", :_type=>"mdm", :_routing=>nil, :pipeline=>"miniduke"}, 2018-02-28T15:51:35.029Z %{host} %{message}], :response=>{"index"=>{"_index"=>"miniduke", "_type"=>"mdm", "_id"=>"AWHdHJuS0_B5s51V1Ss_", "status"=>400, "error"=>{"type"=>"illegal_argument_exception", "reason"=>"mapper [data] of different type, current_type [long], merged_type [text]"}}}}
+{
+     "@timestamp" => 2018-02-28T15:51:35.029Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] 40,
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T15:55:00.305Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] "40",
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T15:56:29.951Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] 40,
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T15:56:45.110Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] "40",
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T16:58:57,814][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at 'ruby {'
+[2018-02-28T16:58:57,819][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at 'init => "require 'json'"'
+[2018-02-28T16:58:57,821][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at 'code => ''
+[2018-02-28T16:58:57,822][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at 'eventHash = event.to_hash'
+[2018-02-28T16:58:57,823][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at 'hash = JSON.parse(eventHash["message"])'
+[2018-02-28T16:58:57,825][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at 'puts hash'
+[2018-02-28T16:58:57,827][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at 'event.set("data", [hash["prenom"],hash["nom"],hash["mail"],hash["age"]])'
+[2018-02-28T16:58:57,828][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '''
+{
+     "@timestamp" => 2018-02-28T15:58:57.762Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T15:58:57.762Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T15:58:57.765Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T15:58:57.766Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T15:58:57.766Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T15:58:57.768Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T15:58:57.772Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T15:58:57.772Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T16:59:00,269][ERROR][logstash.filters.ruby    ] Ruby exception occurred: unexpected token at '}'
+{
+     "@timestamp" => 2018-02-28T15:59:00.262Z,
+           "data" => [
+        [0] "%{prenom}",
+        [1] "%{nom}",
+        [2] "%{mail}",
+        [3] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T15:59:25.894Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] "40",
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T16:02:02.962Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] "40",
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T16:03:26.311Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] "40",
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T16:09:34.199Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] "40",
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+{
+     "@timestamp" => 2018-02-28T16:09:41.855Z,
+           "data" => [
+        [0] "Simon",
+        [1] "Ouellet",
+        [2] "so@minibig.io",
+        [3] "40",
+        [4] "%{prenom}",
+        [5] "%{nom}",
+        [6] "%{mail}",
+        [7] "%{age}"
+    ],
+         "weight" => [
+        [0] "[0.4, 0.6]",
+        [1] "[0.3, 0.8]",
+        [2] "[0.5, 0.95]",
+        [3] "[0.5, 0.95]"
+    ],
+        "filters" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+         "fields" => [
+        [0] "first_name",
+        [1] "last_name",
+        [2] "mail",
+        [3] "age"
+    ],
+    "comparators" => [
+        [0] "no.priv.garshol.duke.comparators.Levenshtein",
+        [1] "no.priv.garshol.duke.comparators.Levenshtein",
+        [2] "org.minibig.duke.miniduke.EmailComparator",
+        [3] "org.minibig.duke.miniduke.EmailComparator"
+    ]
+}
+[2018-02-28T17:14:06,918][WARN ][logstash.runner          ] SIGTERM received. Shutting down the agent.
+[2018-02-28T17:14:07,384][WARN ][logstash.agent           ] stopping pipeline {:id=>"main"}
