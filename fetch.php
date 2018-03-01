@@ -134,13 +134,14 @@ var_dump($configuration['kafka']['hosts']);
         $filter .= add_field_logstash($merged, 'filters', 'new_key');
 
         $filter .= '"threshold" => ' . $threshold . '
+                    "host" => "'.$configuration['elasticsearch']['host'].'"
                     ';
         $filter .= '}
                     }
                     ';
 
         $filter .= 'prune {
-                        whitelist_names => ["fields", "comparator", "data", "weight", "filters", "threshold", "timestamp"]
+                        whitelist_names => ["fields", "comparator", "data", "weight", "filters", "threshold", "host", "timestamp"]
                     }
                     ';
 

@@ -48,3 +48,15 @@ select {
 td:not(.tune td){
     padding-top: 16px;
 }
+
+i.fa {
+    margin-left: 20px;
+}
+
+.panel-heading {
+    padding: 10px;
+}
+
+.panel i.material-icons {
+    font-size: 50px;
+}
