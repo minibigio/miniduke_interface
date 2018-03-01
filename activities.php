@@ -30,15 +30,41 @@ use Toml\Parser;
             $conf = Parser::fromFile('config.toml');
 
             $elasticHost = $conf['elasticsearch']['host'];
-            $elasticJson = file_get_contents("http://".$elasticHost);
+            $elasticJson = null;
+            if (file_exists('http://'.$elasticHost)) {
+                $elasticJsonContent = file_get_contents('http://' . $elasticHost);
+                $elasticJson = json_decode($elasticJsonContent);
+            }
+
+            $elasticJsonHealth = null;
+            if (file_exists('http://'.$elasticHost.'/_cluster/health')) {
+                $elasticJsonContent = file_get_contents('http://'.$elasticHost.'/_cluster/health');
+                $elasticJsonHealth = json_decode($elasticJsonContent);
+            }
+
+            $elasticVersion = '';
+            $elasticClusterName = '';
+            $elasticStatus = '';
+            if ($elasticJson != null && !empty($elasticJson) && $elasticJsonHealth != null && !empty($elasticJsonHealth)) {
+                $elasticVersion = $elasticJson->version->number;
+                $elasticClusterName = $elasticJson->cluster_name;
+                $elasticStatus = $elasticJsonHealth->status;
+            }
+
             var_dump($elasticJson);
 
 
             $kafkaHosts = $conf['kafka']['hosts'];
+            $kafkaAllGood = true;
+            $kafkaHostsHealth = [];
             foreach ($kafkaHosts as $kHost) {
+                $host = explode(':', $kHost)[0];
                 $port = explode(':', $kHost)[1];
-                exec('netstat -an | grep '.$port.' | grep LISTEN', $out);
+                exec('netstat -an | grep '.$host.'.'.$port.' | grep LISTEN', $out);
                 var_dump($out);
+                if (!empty($out)) {
+
+                }
             }
 
             $pdo = new PDO($conf["database"]["connection"]);
@@ -78,8 +104,114 @@ use Toml\Parser;
                     echo 'ko';
             }
         ?>
-    </div> <!-- /container -->
 
+
+
+
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel">
+                        <div class="panel-heading text-white <?php echo (in_array($elasticStatus, ['yellow', 'green'])) ? 'bg-success':'bg-danger'; ?>">
+                            <div class="text-center">Elasticsearch</div>
+
+                            <div class="text-center check"><i class="material-icons"><?php echo (in_array($elasticStatus, ['yellow', 'green'])) ? 'check_circle':'error'; ?></i></div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel">
+                        <div class="panel-heading text-white bg-info">
+                            <p>Status: <?php echo $elasticStatus; ?><br>
+                               Host: <?php echo $elasticHost; ?><br>
+                               Version: <?php echo $elasticVersion; ?></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading text-white <?php echo (in_array($elasticStatus, ['yellow', 'green'])) ? 'bg-success':'bg-danger'; ?>">
+                        <div class="text-center">Elasticsearch</div>
+
+                        <div class="text-center check"><i class="material-icons"><?php echo (in_array($elasticStatus, ['yellow', 'green'])) ? 'check_circle':'error'; ?></i></div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading text-white bg-info">
+                        <p>Status: <?php echo $elasticStatus; ?><br>
+                            Host: <?php echo $elasticHost; ?><br>
+                            Version: <?php echo $elasticVersion; ?></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">124</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-support fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">13</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div> <!-- /container -->
 </main>
 
 <?php
