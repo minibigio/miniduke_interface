@@ -8,14 +8,16 @@ title = "Fichier de configuration de l'application Miniduke"
 name = "Minibig"
 dob = "2018-02-23T17:00:00+01:00"
 
+# Préferer 127.0.0.1 au lieu de localhost
 [elasticsearch]
 host = "127.0.0.1:9200"
 index = "miniduke"
 type = "mdm"
 # Connexion de Logstah à Kafka
 # Il est possible de mettre plusieurs hosts et plusieurs topics
+# Préferer 127.0.0.1 au lieu de localhost
 [kafka]
-hosts = ["127.0.0.1:9092", "127.0.0.:9091"]
+hosts = ["127.0.0.1:9092"]
 topics = ["reconia"]
 
 # Si le launcher est distant, seul launcher.distant sera pris en compte et vis versa
