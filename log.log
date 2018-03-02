@@ -257,3 +257,8 @@ nohup: can't detach from console: No such file or directory
 [2018-02-27T14:45:51,399][WARN ][logstash.agent           ] stopping pipeline {:id=>"main"}
 [2018-02-27T14:45:51,559][FATAL][logstash.runner          ] SIGINT received. Terminating immediately..
 nohup: can't detach from console: No such file or directory
+Sending Logstash's logs to /usr/local/logstash-5.6.5/logs which is now configured via log4j2.properties
+[2018-03-02T16:54:30,551][INFO ][logstash.modules.scaffold] Initializing module {:module_name=>"netflow", :directory=>"/usr/local/logstash-5.6.5/modules/netflow/configuration"}
+[2018-03-02T16:54:30,557][INFO ][logstash.modules.scaffold] Initializing module {:module_name=>"fb_apache", :directory=>"/usr/local/logstash-5.6.5/modules/fb_apache/configuration"}
+[2018-03-02T16:54:30,678][INFO ][logstash.agent           ] No config files found in path {:path=>"/Library/WebServer/Documents/miniduke_interface/topics_conf/.conf"}
+[2018-03-02T16:54:30,680][ERROR][logstash.agent           ] failed to fetch pipeline configuration {:message=>"No config files found: /Library/WebServer/Documents/miniduke_interface/topics_conf/.conf. Can you make sure this path is a logstash config file?"}
