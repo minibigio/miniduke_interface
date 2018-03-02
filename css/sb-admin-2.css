@@ -91,6 +91,7 @@ body {
 .sidebar .nav-second-level li,
 .sidebar .nav-third-level li {
   border-bottom: none !important;
+  border-bottom: none !important;
 }
 .sidebar .nav-second-level li a {
   padding-left: 37px;

@@ -9,13 +9,13 @@ name = "Minibig"
 dob = "2018-02-23T17:00:00+01:00"
 
 [elasticsearch]
-host = "localhost:9200"
+host = "127.0.0.1:9200"
 index = "miniduke"
 type = "mdm"
 # Connexion de Logstah à Kafka
 # Il est possible de mettre plusieurs hosts et plusieurs topics
 [kafka]
-hosts = ["localhost:9092"]
+hosts = ["127.0.0.1:9092", "127.0.0.:9091"]
 topics = ["reconia"]
 
 # Si le launcher est distant, seul launcher.distant sera pris en compte et vis versa
@@ -35,7 +35,7 @@ distant_launcher = false
     # Si il est à la racine du dossier de l'interface, laissez l'espace vide
     # Exemple: "/exec/"
     [launcher.local]
-    path = ""
+    path = "/Library/WebServer/Documents/miniduke_interface/"
 
 # Pour connection, il est demandé de mettre le système de connexion pour PDO (PHP)
 # Si un fichier est requis, il est conseillé de donner le path absolu

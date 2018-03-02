@@ -48,3 +48,15 @@ select {
 td:not(.tune td){
     padding-top: 16px;
 }
+
+.panel .check .material-icons {
+    font-size: 46px;
+}
+.status {
+    height: 100px;
+    margin: 10px 0 10px 0;
+}
+.status .panel-heading {
+    padding: 10px 10px 0 10px;
+    height: 100px;
+}
