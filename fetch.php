@@ -13,6 +13,7 @@
 include 'vendor/autoload.php';
 use Toml\Parser;
 
+$add_field_logstash = 'add_field_logstash';
 function add_field_logstash($data, $esKey, $formKey) {
     $out = '"'.$esKey.'" => [';
     $comma = 0;
@@ -21,12 +22,12 @@ function add_field_logstash($data, $esKey, $formKey) {
         $out .= ($comma  < sizeof($data)-1) ? ', ':'';
         $comma++;
     }
-    $out .= ']
-    ';
+    $out .= ']';
 
     return $out;
 }
 
+$disp_config_array = 'disp_config_array';
 function disp_config_array($array) {
     $s = "[";
     $i = 0;
@@ -41,10 +42,10 @@ function disp_config_array($array) {
 }
 
 if (isset($_POST) && $_POST['make_conf_file']) {
-    var_dump('ok');
+
     if (isset($_POST['comparator']) && isset($_POST['key']) && isset($_POST['new_key']) && isset($_POST['high'])
         && isset($_POST['low']) && isset($_POST['threshold']) && isset($_POST['topic'])) {
-        var_dump('ok');
+
         $comparator = $_POST['comparator'];
         $key = $_POST['key'];
         $newKey = $_POST['new_key'];
@@ -68,98 +69,71 @@ if (isset($_POST) && $_POST['make_conf_file']) {
         }
         $jsonMerged['threshold'] = $threshold;
 
-        var_dump($jsonMerged);
-        var_dump($merged);
-
         file_put_contents('topics_conf/'.$topic.'.conf.json', json_encode($jsonMerged));
 
 
         $configuration = Parser::fromFile('config.toml');
 
+        // Makes the data field
+        $hash = "";
+        $i = 0;
+        foreach ($merged as $item) {
+            $hash .= 'hash["' . $item['key'] . '"]';
+            $hash .= ($i < sizeof($merged) - 1) ? ',' : '';
+            $i++;
+        }
 
-var_dump($configuration['kafka']['hosts']);
-        $input = 'input { 
-        kafka {
-        "bootstrap_servers" => '.disp_config_array($configuration['kafka']['hosts']).'
-        "topics" => '.disp_config_array($configuration['kafka']['topics']).'
-    }}
-    
-    ';
-
-        $filter = 'filter {
-                ruby {
-                init => "require \'json\'"
-                code => \'
-                    eventHash = event.to_hash
-                    hash = JSON.parse(eventHash["message"])
-                    event.set("data", [';
-                    $i=0;
-                    foreach ($merged as $item) {
-                        $filter .= 'hash["' . $item['key'] . '"]';
-                        $filter .= ($i < sizeof($merged) - 1) ? ',' : '';
-                        $i++;
-                    }
-                    $filter .= '])
-                \'
-            }
-                mutate {
-                    add_field => {
-                    ';
-
-        $filter .= add_field_logstash($merged, 'fields', 'new_key');
-//                    add_field_logstash($merged, 'data', 'new_key');
-        $filter .= add_field_logstash($merged, 'comparator', 'comparator');
-
-      /*  $filter .= '"data" => [';
+        // Makes the weights
+        $weight = '';
         $comma = 0;
         foreach ($merged as $item) {
-            $filter .= '"%{' . $item['key'] . '}"';
-            $filter .= ($comma < sizeof($merged) - 1) ? ', ' : '';
+            $weight .= '[' . $item['low'] . ', ' . $item['high'] . ']';
+            $weight .= ($comma < sizeof($merged) - 1) ? ', ' : '';
             $comma++;
         }
-        $filter .= ']
-                    ';*/
 
-        $filter .= '"weight" => [';
-        $comma = 0;
-        foreach ($merged as $item) {
-            $filter .= '[' . $item['low'] . ', ' . $item['high'] . ']';
-            $filter .= ($comma < sizeof($merged) - 1) ? ', ' : '';
-            $comma++;
+        $logstashConfigurationFile = <<<TEXT
+input { 
+    kafka {
+        "bootstrap_servers" => {$disp_config_array($configuration['kafka']['hosts'])}
+        "topics" => {$disp_config_array($configuration['kafka']['topics'])}
+    }
+}
+filter {
+    ruby {
+        init => "require 'json'"
+        code => '
+            eventHash = event.to_hash
+            hash = JSON.parse(eventHash["message"])
+            event.set("data", [$hash])
+        '
+    }
+    mutate {
+        add_field => {
+            {$add_field_logstash($merged, 'fields', 'new_key')}
+            {$add_field_logstash($merged, 'comparator', 'comparator')}
+            "weight" => [ {$weight} ]
+            {$add_field_logstash($merged, 'filters', 'new_key')}
+            "threshold" => $threshold
+            "host" => "{$configuration['elasticsearch']['host']}"
         }
-        $filter .= ']
-                    ';
+    }
+    prune {
+        whitelist_names => ["fields", "comparator", "data", "weight", "filters", "threshold", "host", "timestamp"]
+    }
+}
+output {
+    elasticsearch { 
+        hosts => "{$configuration['elasticsearch']['host']}"
+        index => "{$configuration['elasticsearch']['index']}"
+        document_type => "{$configuration['elasticsearch']['type']}"
+        pipeline => "miniduke"
+    }
+    stdout { codec => rubydebug }
+}
+TEXT;
 
-
-        $filter .= add_field_logstash($merged, 'filters', 'new_key');
-
-        $filter .= '"threshold" => ' . $threshold . '
-                    "host" => "'.$configuration['elasticsearch']['host'].'"
-                    ';
-        $filter .= '}
-                    }
-                    ';
-
-        $filter .= 'prune {
-                        whitelist_names => ["fields", "comparator", "data", "weight", "filters", "threshold", "host", "timestamp"]
-                    }
-                    ';
-
-        $filter .= '}';
-
-
-        $output = 'output {
-                    elasticsearch { 
-                        hosts => "'.$configuration['elasticsearch']['host'].'"
-                        index => "'.$configuration['elasticsearch']['index'].'"
-                        document_type => "'.$configuration['elasticsearch']['type'].'"
-                        pipeline => "miniduke"
-                    }
-                  stdout { codec => rubydebug }
-                }';
-
-        var_dump($topic);
-        file_put_contents('./topics_conf/'.$topic.'.conf', $input . $filter . $output);
+        file_put_contents('./topics_conf/'.$topic.'.conf', $logstashConfigurationFile);
 
     }
 }
