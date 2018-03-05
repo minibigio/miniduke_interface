@@ -19,6 +19,9 @@
 header, nav {
     flex: 1;
 }
+.nav-item {
+    cursor: pointer;
+}
 ul {
     list-style-type: square;
     margin-left: 20px;
@@ -45,6 +48,15 @@ select {
 .tune {
     /*padding-top: 10px;*/
 }
-td:not(.tune td){
-    padding-top: 16px;
+
+.panel .check .material-icons {
+    font-size: 46px;
+}
+.status {
+    height: 100px;
+    margin: 10px 0 10px 0;
+}
+.status .panel-heading {
+    padding: 10px 10px 0 10px;
+    height: 100px;
 }
