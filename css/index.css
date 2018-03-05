@@ -48,9 +48,6 @@ select {
 .tune {
     /*padding-top: 10px;*/
 }
-td:not(.tune td){
-    padding-top: 16px;
-}
 
 .panel .check .material-icons {
     font-size: 46px;
