@@ -20,7 +20,7 @@ topics = ["reconia"]
 
 # Si le launcher est distant, seul launcher.distant sera pris en compte et vis versa
 [launcher]
-distant_launcher = false
+distant_launcher = true
 
     # Il est conseillé de donner le path absolu
     # Sinon, partez du dossier home du user

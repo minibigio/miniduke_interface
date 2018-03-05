@@ -8,10 +8,15 @@
 ?>
 
 <?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
 include 'commons/head.php';
 include 'commons/header.php';
 
 include 'vendor/autoload.php';
+include 'lib/Ping.class.php';
+
+use JJG\Ping;
 use Toml\Parser;
 ?>
 <main role="main">
@@ -115,21 +120,20 @@ use Toml\Parser;
 
         $launcherFound = false;
         if ($conf['launcher']['distant_launcher'] == true) {
-            // @TODO : Find on a distant server
             $out = null;
             $launcherUser = $conf['launcher']['distant']['user'];
             $launcherHost = $conf['launcher']['distant']['host'];
             $launcherPath = $conf['launcher']['distant']['path'];
 
-            exec('ping '.$launcherHost, $out);
-            var_dump($out);
+            $ping = new Ping($launcherHost);
+            $latency = $ping->ping('fsockopen');
 
             $out = null;
-            exec('ssh '.$conf["launcher"]["distant"]["user"].'@'.$conf["launcher"]["distant"]["host"].'
-                         "[[ -f '.$conf["launcher"]["distant"]["path"].'start_logstash.sh ]] && echo "Found" || echo "Not found"', $out);
-
-            $launcherFound = ($out[0] == 'Found');
-            var_dump($out);
+            $launcherFound = false;
+            if ($latency !== false) {
+                exec('ssh '.$conf["launcher"]["distant"]["user"].'@'.$conf["launcher"]["distant"]["host"].' "[[ -f '.$conf["launcher"]["distant"]["path"].'start_logstash.sh ]] && echo \'Found\' || echo \'Not found\'"', $out);
+                $launcherFound = (isset($out[0]) && $out[0] == 'Found');
+            }
 
         }
         else {
@@ -137,7 +141,7 @@ use Toml\Parser;
             exec('[[ -f '.$conf["launcher"]["local"]["path"].'start_logstash.sh ]] && echo "Found" || echo "Not found"', $out);
 
             $launcherPath = $conf["launcher"]["local"]["path"];
-            $launcherFound = ($out[0] == 'Found');
+            $launcherFound = (isset($out[0]) && $out[0] == 'Found');
         }
         //endregion
         ?>
