@@ -8,14 +8,16 @@ title = "Fichier de configuration de l'application Miniduke"
 name = "Minibig"
 dob = "2018-02-23T17:00:00+01:00"
 
+# Préferer 127.0.0.1 au lieu de localhost
 [elasticsearch]
 host = "127.0.0.1:9200"
 index = "miniduke"
 type = "mdm"
 # Connexion de Logstah à Kafka
 # Il est possible de mettre plusieurs hosts et plusieurs topics
+# Préferer 127.0.0.1 au lieu de localhost
 [kafka]
-hosts = ["127.0.0.1:9092", "127.0.0.:9091"]
+hosts = ["127.0.0.1:9092"]
 topics = ["reconia"]
 
 # Si le launcher est distant, seul launcher.distant sera pris en compte et vis versa
@@ -23,7 +25,6 @@ topics = ["reconia"]
 distant_launcher = true
 
     # Il est conseillé de donner le path absolu
-    # Sinon, partez du dossier home du user
     # Exemple: "/home/root/miniduke/"
     [launcher.distant]
     host = "192.168.0.237"
@@ -31,9 +32,6 @@ distant_launcher = true
     path = "/data/reconia/"
 
     # Il est conseillé de donner le path absolu
-    # Sinon, partez du dossier "root" de l'interface
-    # Si il est à la racine du dossier de l'interface, laissez l'espace vide
-    # Exemple: "/exec/"
     [launcher.local]
     path = "/Library/WebServer/Documents/miniduke_interface/"
 
