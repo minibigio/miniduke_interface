@@ -59,15 +59,10 @@ if (isset($_GET['index']) && in_array($_GET['topic'], $topics)) {
         $logstashInstance = $logstashInstancesSql->fetch();
 
         if ($configuration["launcher"]["distant_launcher"]) {
-            var_dump($logstashInstance);
-            echo 'ssh '.$configuration["launcher"]["distant"]["user"].'@'.$configuration["launcher"]["distant"]["host"].'
-            "sh '.$configuration["launcher"]["distant"]["path"].'stop_logstash.sh '.$logstashInstance['name'].' '.$logstashInstance['pid'].'"';
-
             exec('ssh '.$configuration["launcher"]["distant"]["user"].'@'.$configuration["launcher"]["distant"]["host"].' "sh '.$configuration["launcher"]["distant"]["path"].'stop_logstash.sh '.$logstashInstance['name'].' '.$logstashInstance['pid'].'"', $pid);
         }
         else {
-            echo 'sh ' . $configuration["launcher"]["local"]["path"] . 'stop_logstash.sh '.$logstashInstance['pid'];
-            exec('sh ' . $configuration["launcher"]["local"]["path"] . 'stop_logstash.sh '.$logstashInstance['pid'], $pid);
+            exec('sh ' . $configuration["launcher"]["local"]["path"] . 'stop_logstash.sh '.$logstashInstance['name'].' '.$logstashInstance['pid'], $pid);
         }
 
         $logstashInstancesSql= $pdo->prepare('delete from logstash_instances where name=?');
@@ -81,14 +76,10 @@ if (isset($_GET['index']) && in_array($_GET['topic'], $topics)) {
     if (($_GET['index'] == 'start' || $_GET['index'] == 'restart') && $logstashInstancesCount[0] == 0) {
 
         if ($configuration["launcher"]["distant_launcher"]) {
-            echo 'ssh '.$configuration["launcher"]["distant"]["user"].'@'.$configuration["launcher"]["distant"]["host"].'
-            "sh '.$configuration["launcher"]["distant"]["path"].'start_logstash.sh '.$_GET['topic'].'"';
             exec('ssh '.$configuration["launcher"]["distant"]["user"].'@'.$configuration["launcher"]["distant"]["host"].' "sh '.$configuration["launcher"]["distant"]["path"].'start_logstash.sh '.$_GET['topic'].'"', $pid);
         }
         else {
-            echo 'sh ' . $configuration["launcher"]["local"]["path"] . 'start_logstash.sh ' . $_GET['topic'];
             exec('sh ' . $configuration["launcher"]["local"]["path"] . 'start_logstash.sh ' . $_GET['topic'], $pid);
-
         }
 
         if ((int)$pid[0] > 0) {
@@ -239,6 +230,9 @@ include 'commons/header.php';
                         ?>
                         <a href="map.php?index=restart&topic=<?php echo $_GET['topic']; ?>">
                             <button type="button" class="btn btn-info btn-lg">Restart index</button>
+                        </a>
+                        <a href="map.php?index=stop&topic=<?php echo $_GET['topic']; ?>">
+                            <button type="button" class="btn btn-danger btn-lg">Stop index</button>
                         </a>
                         <?php
                     }
