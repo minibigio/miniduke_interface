@@ -1,0 +1,18 @@
+[
+  {
+    "type": "text",
+    "label": "Prénom",
+    "name": "first_name"
+  },
+  {
+    "type": "text",
+    "label": "Nom",
+    "name": "last_name"
+  },
+  {
+    "type": "radio",
+    "label": "Sex",
+    "name": "gender",
+    "values": [{"name": "Femme", "value": "0"}, {"name": "Homme", "value": "1"}]
+  }
+]
