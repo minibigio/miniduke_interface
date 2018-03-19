@@ -1,5 +1,6 @@
 {
     "require": {
-	  "jamesmoss/toml": "dev-master"
+	  "jamesmoss/toml": "dev-master",
+      "elasticsearch/elasticsearch": "~5.0"
     }
 }
