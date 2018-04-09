@@ -10,7 +10,7 @@
 <?php
 $topics = [];
 
-if ($handle = opendir(ini_get('include_path').'/topics_conf/')) {
+if ($handle = opendir('./topics_conf/')) {
     while (false !== ($entry = readdir($handle))) {
         if ($entry != "." && $entry != "..") {
             $fileExplode = explode('.', $entry);
@@ -41,10 +41,8 @@ if ($handle = opendir(ini_get('include_path').'/topics_conf/')) {
                 <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Map</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     <?php
-                    foreach ($topics as $topic) {
-                        if (strpos($topic, '_raw') === false)
-                            echo '<a class="dropdown-item" href="map.php?topic='.$topic.'">'.ucfirst($topic).'</a>';
-                    }
+                    foreach ($topics as $topic)
+                        echo '<a class="dropdown-item" href="map.php?topic='.$topic.'">'.ucfirst($topic).'</a>';
                     ?>
                 </div>
             </li>
