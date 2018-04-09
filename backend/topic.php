@@ -9,12 +9,17 @@
 ?>
 
 <?php
+include 'commons/head.php';
+include ini_get('include_path').'/vendor/autoload.php';
+?>
+
+<?php
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
 $topics = [];
 
-if ($handle = opendir('./topics_conf/')) {
+if ($handle = opendir(ini_get('include_path').'/topics_conf/')) {
     while (false !== ($entry = readdir($handle))) {
         if ($entry != "." && $entry != "..") {
             $topics[] = explode('.', $entry)[0]; // Get the name of the file
@@ -22,6 +27,8 @@ if ($handle = opendir('./topics_conf/')) {
     }
     closedir($handle);
 }
+
+use Toml\Parser;
 ?>
 
 <?php
@@ -29,8 +36,8 @@ if ($handle = opendir('./topics_conf/')) {
 if (isset($_POST['source']) && $_POST['source'] != null) {
     if (!in_array($_POST['source'], $topics)) {
         if (preg_match('/^[a-zA-Z0-9_]*$/', $_POST['source'])) {
-            file_put_contents('./topics_conf/' . strtolower($_POST['source']) . '.conf', '');
-            file_put_contents('./topics_data/' . strtolower($_POST['source']) . '.json', '');
+            file_put_contents(ini_get('include_path').'/topics_conf/' . strtolower($_POST['source']) . '.conf', '');
+            file_put_contents(ini_get('include_path').'/topics_data/' . strtolower($_POST['source']) . '.json', '');
         }
     }
 }
@@ -38,16 +45,18 @@ if (isset($_POST['source']) && $_POST['source'] != null) {
 if (isset($_GET['pull']) && in_array($_GET['pull'], $topics)) {
     $macosPATH = '/Library/Frameworks/Python.framework/Versions/3.6/bin/python3.6';
     $linuxPATH = 'python3';
-    exec($linuxPATH.' consume.py '.$_GET['pull'], $output);
+    $conf = Parser::fromFile(ini_get('include_path').'/config.toml');
+    exec($macosPATH.' '.ini_get('include_path').'/consume.py '.$conf['kafka']['host'].' '.$_GET['pull'], $output);
+    var_dump($output);
 }
 
 if (isset($_GET['delete']) && in_array($_GET['delete'], $topics)) {
 
-    if (file_exists('./topics_conf/'.strtolower($_GET['delete']) . '.conf'))
-        unlink('./topics_conf/' . strtolower($_GET['delete']) . '.conf');
+    if (file_exists(ini_get('include_path').'/topics_conf/'.strtolower($_GET['delete']) . '.conf'))
+        unlink(ini_get('include_path').'/topics_conf/' . strtolower($_GET['delete']) . '.conf');
 
-    if (file_exists('./topics_data/'.strtolower($_GET['delete']) . '.json'))
-        unlink('./topics_data/' . strtolower($_GET['delete']) . '.json');
+    if (file_exists(ini_get('include_path').'/topics_data/'.strtolower($_GET['delete']) . '.json'))
+        unlink(ini_get('include_path').'/topics_data/' . strtolower($_GET['delete']) . '.json');
 }
 
 ?>
@@ -55,7 +64,6 @@ if (isset($_GET['delete']) && in_array($_GET['delete'], $topics)) {
 
 
 <?php
-include 'commons/head.php';
 include 'commons/header.php';
 ?>
 
@@ -103,6 +111,11 @@ include 'commons/header.php';
                             <input name="source_meta" class="form-control" id="source_meta" disabled value="<?php echo $topic.'_meta'; ?>">
                         </div>
 
+                        <div class="form-group">
+                            <label for="source_meta">Topic raw</label>
+                            <input name="source_raw" class="form-control" id="source_raw" disabled value="<?php echo $topic.'_raw'; ?>">
+                        </div>
+
                         <div class="text-center">
                             <a href="topic.php?delete=<?php echo $topic; ?>" class="deleteBtn"><button type="button" class="btn btn-danger">Supprimer</button></a>
                             <button class="btn btn-primary">Editer la source</button>
@@ -129,6 +142,11 @@ include 'commons/header.php';
                             <input name="source_meta" class="form-control" id="source_meta" disabled>
                         </div>
 
+                        <div class="form-group">
+                            <label for="source_meta">Topic raw</label>
+                            <input name="source_raw" class="form-control" id="source_raw" disabled>
+                        </div>
+
                         <div class="text-center">
                             <button class="btn btn-primary">Ajouter une source</button>
                         </div>
@@ -146,6 +164,9 @@ include 'commons/header.php';
 <script type="text/javascript">
     document.querySelector('#source').addEventListener('keyup', function() {
         document.querySelector('#source_meta').value = this.value+'_meta';
+    });
+    document.querySelector('#source').addEventListener('keyup', function() {
+        document.querySelector('#source_raw').value = this.value+'_raw';
     });
     document.querySelectorAll('.deleteBtn').forEach(function (t) {
         t.addEventListener('click', function() {

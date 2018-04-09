@@ -9,7 +9,7 @@
 ?>
 
 <?php
-
+include 'commons/head.php';
 include 'vendor/autoload.php';
 use Toml\Parser;
 
@@ -41,6 +41,38 @@ function disp_config_array($array) {
     return $s;
 }
 
+$disp_config_array_raw = 'disp_config_array_raw';
+function disp_config_array_raw($array) {
+    $s = "[";
+    $i = 0;
+    foreach ($array as $a) {
+        $s .= '"'.$a.'"';
+        if ($i < sizeof($array) -1)
+            $s .= ",";
+        $i++;
+    }
+    $s .= "]";
+    return $s;
+}
+
+function rename_key($ugly, $new) {
+    if ($ugly < sizeof($new))
+        return $new[$ugly];
+    return $ugly;
+}
+
+$rename_all_keys = 'rename_all_keys';
+function rename_all_keys($old, $new) {
+    $s = '';
+    $i = 0;
+    foreach ($old as $o) {
+        $s .= '"'.$o.'" => "'.rename_key($i, $new).'"
+        '; // \n equivalent
+        $i++;
+    }
+    return $s;
+}
+
 if (isset($_POST) && $_POST['make_conf_file']) {
 
     if (isset($_POST['comparator']) && isset($_POST['key']) && isset($_POST['new_key']) && isset($_POST['high'])
@@ -69,10 +101,10 @@ if (isset($_POST) && $_POST['make_conf_file']) {
         }
         $jsonMerged['threshold'] = $threshold;
 
-        file_put_contents('topics_conf/'.$topic.'.conf.json', json_encode($jsonMerged));
+        file_put_contents(ini_get('include_path').'/topics_conf/'.$topic.'.conf.json', json_encode($jsonMerged));
 
 
-        $configuration = Parser::fromFile('config.toml');
+        $configuration = Parser::fromFile(ini_get('include_path').'/config.toml');
 
         // Makes the data field
         $hash = "";
@@ -92,11 +124,14 @@ if (isset($_POST) && $_POST['make_conf_file']) {
             $comma++;
         }
 
+        $kafka_topic = $configuration['kafka']['topic'].'_raw';
+        $kafka_raw_topic = $configuration['kafka']['topic'].'_raw';
+
         $logstashConfigurationFile = <<<TEXT
 input { 
     kafka {
-        "bootstrap_servers" => {$disp_config_array($configuration['kafka']['hosts'])}
-        "topics" => {$disp_config_array($configuration['kafka']['topics'])}
+        "bootstrap_servers" => {$configuration['kafka']['host']}
+        "topics" => "{$kafka_topic}"
     }
 }
 filter {
@@ -133,8 +168,34 @@ output {
 }
 TEXT;
 
-        file_put_contents('./topics_conf/'.$topic.'.conf', $logstashConfigurationFile);
+        file_put_contents(ini_get('include_path').'/topics_conf/'.$topic.'.conf', $logstashConfigurationFile);
 
+
+        $logstashConfigurationFileRaw = <<<TEXT
+input { 
+    kafka {
+        "bootstrap_servers" => "{$configuration['kafka']['host']}"
+        "topics" => "{$kafka_raw_topic}"
+    }
+}
+filter {
+    mutate {
+        rename => {
+            {$rename_all_keys($key, $newKey)}
+        }
+    }
+}
+output {
+    elasticsearch { 
+        hosts => "{$configuration['elasticsearch']['host']}"
+        index => "{$kafka_raw_topic}"
+        document_type => "raw"
+    }
+    stdout { codec => rubydebug }
+}
+TEXT;
+
+        file_put_contents(ini_get('include_path').'/topics_conf/'.$topic.'_raw.conf', $logstashConfigurationFileRaw);
     }
 }
 

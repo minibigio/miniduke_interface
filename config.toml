@@ -15,11 +15,9 @@ index = "logstash_test"
 type = "mdm"
 
 # Connexion de Logstah à Kafka
-# Il est possible de mettre plusieurs hosts et plusieurs topics
 # Préferer 127.0.0.1:9092 au lieu de localhost:9092
 [kafka]
-hosts = ["127.0.0.1:9092"]
-topics = ["reconia"]
+host = "127.0.0.1:9092"
 
 # Si le launcher est distant, seul launcher.distant sera pris en compte et vis versa
 [launcher]

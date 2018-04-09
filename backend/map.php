@@ -10,13 +10,14 @@
 <?php
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
+include 'commons/head.php';
 include 'vendor/autoload.php';
 use Toml\Parser;
 
 
 $topics = [];
 
-if ($handle = opendir('./topics_conf/')) {
+if ($handle = opendir(ini_get('include_path').'/topics_conf/')) {
     while (false !== ($entry = readdir($handle))) {
         if ($entry != "." && $entry != "..") {
             $fileExplode = explode('.', $entry);
@@ -34,9 +35,9 @@ $json = [];
 if (isset($_GET['topic'])) {
     $topic = $_GET['topic'];
 
-    if (file_exists('./topics_data/' . $_GET['topic'] . '.json')) {
-        $topic_data_file = fopen('./topics_data/' . $_GET['topic'] . '.json', 'r');
-        $file_size = filesize('./topics_data/' . $_GET['topic'] . '.json');
+    if (file_exists(ini_get('include_path').'/topics_data/' . $_GET['topic'] . '.json')) {
+        $topic_data_file = fopen(ini_get('include_path').'/topics_data/' . $_GET['topic'] . '.json', 'r');
+        $file_size = filesize(ini_get('include_path').'/topics_data/' . $_GET['topic'] . '.json');
 
         if ($file_size > 0) {
             // Open file and return array
@@ -46,7 +47,7 @@ if (isset($_GET['topic'])) {
 }
 
 if (isset($_GET['index']) && in_array($_GET['topic'], $topics)) {
-    $configuration = Parser::fromFile('config.toml');
+    $configuration = Parser::fromFile(ini_get('include_path').'/config.toml');
 
     $pdo = new PDO($configuration["database"]["connection"]);
 
@@ -84,7 +85,7 @@ if (isset($_GET['index']) && in_array($_GET['topic'], $topics)) {
     }
 }
 
-$string = file_get_contents("map_options.json");
+$string = file_get_contents(ini_get('include_path')."/map_options.json");
 $map_options = json_decode($string, true);
 
 ?>
@@ -203,7 +204,7 @@ include 'commons/header.php';
 
                         <button class="btn btn-primary btn-lg">Make conf file</button>
                         <?php
-                        $pdo = new PDO('sqlite:miniduke.db');
+                        $pdo = new PDO('sqlite:'.ini_get('include_path').'/miniduke.db');
                         $logtsashInstanceSql = $pdo->prepare('select count(*) from logstash_instances where name=?');
                         $logtsashInstanceSql->execute([$_GET['topic']]);
                         $logstashInstance = $logtsashInstanceSql->fetch();

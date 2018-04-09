@@ -5,6 +5,8 @@
  * Date: 20/02/2018
  * Time: 19:01
  */
+
+ini_set('include_path', '/Library/WebServer/Documents/miniduke_interface');
 ?>
 
 <html>
