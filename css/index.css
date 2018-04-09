@@ -36,15 +36,6 @@ li .material-icons {
     padding: 0 30px 0 30px;
     font-size: 16px;
 }
-input, select {
-    font-size: 14px;
-    line-height: 25px;
-    margin: 3px 5px 3px 5px;
-}
-select {
-    height: 25px;
-    width: 125px;
-}
 .tune {
     /*padding-top: 10px;*/
 }

@@ -79,8 +79,10 @@ include 'commons/header.php';
                 <h4>Topics existants</h4>
                 <ul>
                     <?php
-                    foreach ($topics as $topic)
-                        echo '<li>'.$topic.' <a href="topic.php?edit='.$topic.'"><i class="material-icons">mode_edit</i></a></li>';
+                    foreach ($topics as $topic) {
+                        if (strpos($topic, '_raw') === false)
+                            echo '<li>'.$topic.' <a href="topic.php?edit='.$topic.'"><i class="material-icons">mode_edit</i></a></li>';
+                    }
                     ?>
                 </ul>
             </div>

@@ -8,21 +8,20 @@ title = "Fichier de configuration de l'application Miniduke"
 name = "Minibig"
 dob = "2018-02-23T17:00:00+01:00"
 
-# Préferer 127.0.0.1 au lieu de localhost
+# Préferer 127.0.0.1:9200 au lieu de localhost:9200
 [elasticsearch]
 host = "127.0.0.1:9200"
-index = "miniduke"
+index = "mairie"
 type = "mdm"
+
 # Connexion de Logstah à Kafka
-# Il est possible de mettre plusieurs hosts et plusieurs topics
-# Préferer 127.0.0.1 au lieu de localhost
+# Préferer 127.0.0.1:9092 au lieu de localhost:9092
 [kafka]
-hosts = ["127.0.0.1:9092"]
-topics = ["reconia"]
+host = "127.0.0.1:9092"
 
 # Si le launcher est distant, seul launcher.distant sera pris en compte et vis versa
 [launcher]
-distant_launcher = true
+distant_launcher = false
 
     # Il est conseillé de donner le path absolu
     # Exemple: "/home/root/miniduke/"
@@ -39,5 +38,5 @@ distant_launcher = true
 # Si un fichier est requis, il est conseillé de donner le path absolu
 # Sinon, partez du dossier "root" de l'interface
 [database]
-connection = "sqlite:miniduke.db"
+connection = "sqlite:/Library/WebServer/Documents/miniduke_interface/miniduke.db"
 type = "sqlite3"

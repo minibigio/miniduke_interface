@@ -1,4 +1,4 @@
-document.querySelectorAll("select").forEach(function (t) {
+document.querySelectorAll("select.preselect").forEach(function (t) {
     t.addEventListener("change", function () {
         var tdId = this.parentNode.parentNode.parentNode.getAttribute('data-id');
 
@@ -14,7 +14,8 @@ document.querySelectorAll("select").forEach(function (t) {
 
 document.querySelectorAll('.tune input').forEach(function (t) {
    t.addEventListener("keydown", function () {
-       var tdId = this.parentNode.parentNode.getAttribute('data-id');
-       document.querySelector('div[data-id="'+tdId+'"] select [value="custom"]').selected = true;
+       console.log(this.getAttribute('data-id'));
+       var tdId = this.getAttribute('data-id');
+       document.querySelector('select[data-id="'+tdId+'"] [value="custom"]').selected = true;
    })
 });

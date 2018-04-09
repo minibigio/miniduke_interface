@@ -13,8 +13,8 @@ error_reporting(E_ALL);
 include 'commons/head.php';
 include 'commons/header.php';
 
-include 'vendor/autoload.php';
-include 'lib/Ping.class.php';
+include '../vendor/autoload.php';
+include '../lib/Ping.class.php';
 
 use JJG\Ping;
 use Toml\Parser;
@@ -32,7 +32,7 @@ use Toml\Parser;
 
     <div class="container">
         <?php
-        $conf = Parser::fromFile('config.toml');
+        $conf = Parser::fromFile(ini_get('include_path').'/config.toml');
 
         // Elasticsearch infos
         //region Elastic
@@ -63,23 +63,21 @@ use Toml\Parser;
 
         // Kafka infos
         //region Kafka
-        $kafkaHosts = $conf['kafka']['hosts'];
+        $kafkaHost = $conf['kafka']['host'];
         $kafkaAllGood = true;
         $kafkaAllBad = true;
         $kafkaHostsHealth = [];
-        foreach ($kafkaHosts as $kHost) {
-            $out = null;
-            $host = explode(':', $kHost)[0];
-            $port = explode(':', $kHost)[1];
 
-            exec('netstat -an | grep '.$host.'.'.$port.' | grep LISTEN', $out);
+        $out = null;
+        $host = explode(':', $kafkaHost);
 
-            $kafkaHostsHealth[] = [$kHost => (!empty($out))];
-            if (empty($out))
-                $kafkaAllGood = false;
-            if (!empty($out))
-                $kafkaAllBad = false;
-        }
+        exec('netstat -an | grep '.$host[0].'.'.$host[1].' | grep LISTEN', $out);
+
+        $kafkaHostsHealth[] = [$kafkaHost => (!empty($out))];
+        if (empty($out))
+            $kafkaAllGood = false;
+        if (!empty($out))
+            $kafkaAllBad = false;
         //endregion
 
         // Logstash instances infos

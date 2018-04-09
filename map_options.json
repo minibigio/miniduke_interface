@@ -1,20 +1,62 @@
 [
   {
-    "option": "prenom",
+    "option": "Prénom",
     "comparator": "no.priv.garshol.duke.comparators.Levenshtein",
     "comparator_name": "Levenshtein",
-    "weight": [0.4, 0.6]
+    "weight": [0.32, 0.52]
   },
   {
-    "option": "nom",
+    "option": "Nom",
     "comparator": "no.priv.garshol.duke.comparators.Levenshtein",
     "comparator_name": "Levenshtein",
-    "weight": [0.3, 0.8]
+    "weight": [0.32, 0.65]
   },
   {
-    "option": "mail",
-    "comparator": "org.minibig.duke.miniduke.EmailComparator",
-    "comparator_name": "Email",
-    "weight": [0.5, 0.95]
+    "option": "Adresse mail",
+    "comparator": "org.minibig.miniduke.comparators.EmailComparator",
+    "comparator_name": "EmailComparator",
+    "weight": [0.37, 0.89]
+  },
+  {
+    "option": "Sexe",
+    "comparator": "no.priv.garshol.duke.comparators.ExactComparator",
+    "comparator_name": "ExactComparator",
+    "weight": [0.01, 0.55]
+  },
+  {
+    "option": "Code postal",
+    "comparator": "org.minibig.miniduke.comparators.ZipComparator",
+    "comparator_name": "ZipComparator",
+    "weight": [0.41, 0.69]
+  },
+  {
+    "option": "Adresse",
+    "comparator": "org.minibig.miniduke.comparators.AddressComparator",
+    "comparator_name": "AddressComparator",
+    "weight": [0.36, 0.73]
+  },
+  {
+    "option": "Ville",
+    "comparator": "no.priv.garshol.duke.comparators.WeightedLevenshtein",
+    "comparator_name": "WeightedLevenshtein",
+    "weight": [0.44, 0.51]
+  },
+  {
+    "option": "Téléphone",
+    "comparator": "org.minibig.miniduke.comparators.PhoneComparator",
+    "comparator_name": "PhoneComparator",
+    "weight": [0.25, 0.85]
+  },
+  {
+    "option": "Pays",
+    "comparator": "no.priv.garshol.duke.comparators.ExactComparator",
+    "comparator_name": "ExactComparator",
+    "weight": [0.30, 0.57]
+  },
+  {
+    "option": "Date",
+    "comparator": "org.minibig.miniduke.comparators.DateComparator",
+    "comparator_name": "DateComparator",
+    "weight": [0.41, 0.51]
   }
 ]
