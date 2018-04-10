@@ -14,5 +14,40 @@
     "label": "Sex",
     "name": "gender",
     "values": [{"name": "Femme", "value": "0"}, {"name": "Homme", "value": "1"}]
+  },
+  {
+    "type": "text",
+    "label": "E-mail",
+    "name": "mail"
+  },
+  {
+    "type": "date",
+    "label": "Date de naissance",
+    "name": "birth"
+  },
+  {
+    "type": "text",
+    "label": "Addresse 1",
+    "name": "address1"
+  },
+  {
+    "type": "text",
+    "label": "Ville",
+    "name": "town"
+  },
+  {
+    "type": "text",
+    "label": "Pays",
+    "name": "country"
+  },
+  {
+    "type": "text",
+    "label": "Telephone 1",
+    "name": "tel1"
+  },
+  {
+    "type": "text",
+    "label": "Telephone 2",
+    "name": "tel2"
   }
 ]

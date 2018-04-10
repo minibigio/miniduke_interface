@@ -10,7 +10,7 @@
 <?php
 $topics = [];
 
-if ($handle = opendir('./topics_conf/')) {
+if ($handle = opendir(ini_get('include_path').'/topics_conf/')) {
     while (false !== ($entry = readdir($handle))) {
         if ($entry != "." && $entry != "..") {
             $fileExplode = explode('.', $entry);

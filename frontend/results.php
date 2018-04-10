@@ -36,8 +36,8 @@ $client->setHosts([$conf['elasticsearch']['host']]);
 $client = $client->build();
 
 $params = [
-    'index' => 'logstash_test',
-    'type' => 'mdm',
+    'index' => $conf['elasticsearch']['index'],
+    'type' => $conf['elasticsearch']['type'],
     'body' => [
         'query' => [
             'bool' => [
@@ -65,13 +65,15 @@ function disp_array(array $array) {
     $echo = '<tr>';
     $vals = '';
 
-    foreach ($array as $k => $v) {
+    foreach ($array['_source'] as $k => $v) {
+
         if ($k[0] != '@') {
             $vals .= '<td>';
             if (sizeof($v) > 1) {
                 $vals .= disp_list($v);
             } else {
-                $vals .= $v[0];
+                if (sizeof($v) > 0)
+                    $vals .= $v[0];
             }
 
             $vals .= '</td>';
@@ -79,6 +81,7 @@ function disp_array(array $array) {
     }
 
     $echo .= $vals;
+    $echo .= '<td style="text-align: center"><input type="checkbox" name="report[]" value="'.$array['_id'].'"></td>';
     $echo .= '</tr>';
 
     return $echo;
@@ -97,6 +100,7 @@ function disp_headers(array $array) {
     foreach ($keys as $key) {
         $echo .= '<th>'.$key.'</th>';
     }
+    $echo .= '<th>Select</th>';
     $echo .= '</tr>';
 
     return $echo;
@@ -114,27 +118,35 @@ function disp_headers(array $array) {
     </div>
 
     <div class="container col-md-12">
-        <?php
-        if ($response != null) {
-            ?>
-            <p>Nombre de résultats: <?php echo $response['hits']['total']; ?></p>
-
+        <form action="report.php" method="post">
             <?php
-            if ($response['hits']['total'] > 0) {
+            if ($response != null) {
                 ?>
-                <table class="table results">
-                    <?php
-                    $hits = $response['hits']['hits'];
-                    echo disp_headers($hits[0]['_source']);
-                    foreach ($hits as $hit) {
-                        echo disp_array($hit['_source']);
-                    }
-                    ?>
-                </table>
+                <p>Nombre de résultats: <?php echo $response['hits']['total']; ?></p>
+
                 <?php
+                if ($response['hits']['total'] > 0) {
+                    ?>
+                    <div class="table-responsive">
+                        <table class="table results">
+                            <?php
+                            $hits = $response['hits']['hits'];
+
+                            echo disp_headers($hits[0]['_source']);
+                            foreach ($hits as $hit) {
+        //                        var_dump($hit);
+                                echo disp_array($hit);
+                            }
+                            ?>
+                        </table>
+                    </div>
+                    <?php
+                }
             }
-        }
-        ?>
+            ?>
+
+            <button class="btn btn-info">Report</button>
+        </form>
     </div>
 </main>
 
