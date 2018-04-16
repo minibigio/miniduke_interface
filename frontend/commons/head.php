@@ -14,5 +14,6 @@ ini_set('include_path', '/Library/WebServer/Documents/miniduke_interface');
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/results.css">
 </head>
 <body>

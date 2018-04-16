@@ -21,18 +21,19 @@ host = "127.0.0.1:9092"
 
 # Si le launcher est distant, seul launcher.distant sera pris en compte et vis versa
 [launcher]
-distant_launcher = false
+distant_launcher = true
 
     # Il est conseillé de donner le path absolu
     # Exemple: "/home/root/miniduke/"
     [launcher.distant]
-    host = "192.168.0.237"
+    host = "192.168.0.231"
     user = "root"
-    path = "/data/reconia/"
+    pwd = "requin"
+    path = "/root/miniduke/logstash_action/"
 
     # Il est conseillé de donner le path absolu
     [launcher.local]
-    path = "/Library/WebServer/Documents/miniduke_interface/"
+    path = "/Users/jmartell/miniduke/"
 
 # Pour connection, il est demandé de mettre le système de connexion pour PDO (PHP)
 # Si un fichier est requis, il est conseillé de donner le path absolu
@@ -40,3 +41,6 @@ distant_launcher = false
 [database]
 connection = "sqlite:/Library/WebServer/Documents/miniduke_interface/miniduke.db"
 type = "sqlite3"
+
+[search]
+unique = ["address1", "tel1", "tel2", "email"]

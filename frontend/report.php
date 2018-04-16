@@ -41,6 +41,79 @@ foreach ($_POST['report'] as $entry)
 
 $form = json_decode(file_get_contents('form.json'), true);
 
+$megaHit = [];
+if ($hits > 0) {
+    $megaHit = [];
+    foreach ($hits as $hit)
+        $megaHit = merge_array($megaHit, $hit['_source']);
+}
+
+/*function buildQuery(array $mapping, array $hits) {
+    $must = [];
+    $excludeFields = ['best_match', 'thresholdMaybe'];
+    foreach ($mapping as $m) {
+        if ($m != null) {
+
+            foreach ($m['mappings'] as $k => $v) {
+                $fields = array_keys($m['mappings'][$k]['properties']);
+
+                foreach ($fields as $field) {
+                    if ($field[0] != '@' && !in_array($field, $excludeFields) && isset($hits[$field]) && $hits[$field] != null) {
+
+                        if (is_array($hits[$field])) {
+                            echo 'ok';
+                            $should = [];
+                            foreach ($hits[$field] as $sub) {
+                                $should[] = ['match' => [$field => $sub]];
+                            }
+                            $must[] = ['bool' => ['should' => $should]];
+                        }
+                        else
+                            $must[] = ['match' => [$field => $hits[$field]]];
+                    }
+                }
+            }
+        }
+    }
+
+    return ['query' => ['bool' => ['must' => $must]]];
+}*/
+
+function get_data($client, array $unique, String $index, array $hits) {
+    $source = [];
+
+    foreach ($unique as $u) {
+        $terms = $hits[$u];
+        $query = [
+                    'query' => [
+                        'bool' => [
+                            'must' => [
+                                'match_all' => (object)[]
+                            ],
+                            'filter' => ['terms' => [$u => $terms]]
+                        ]
+                    ]
+                ];
+        $response = $client->search(['index' => $index, 'body' => $query]);
+
+        if ($response['hits']['total'] > 0)
+            foreach ($response['hits']['hits'] as $hit)
+                $source = merge_array($source, $hit['_source']);
+    }
+
+    return $source;
+}
+
+$indices = $client->indices()->getMapping();
+$response = [];
+foreach ($indices as $index => $other) {
+//    $query = buildQuery($client->indices()->getMapping(['index' => 'mairie']), $megaHit);
+//    $response[] = [$index => $client->search(['index' => $index, 'body' => $query])];
+    if ($conf['elasticsearch']['index'] != $index)
+        $response[] = [$index => get_data($client, $conf['search']['unique'], $index, $megaHit)];
+}
+
+
 function getNiceLabel($ugly, $form) {
     foreach ($form as $item) {
         if ($item['name'] == $ugly)
@@ -51,16 +124,21 @@ function getNiceLabel($ugly, $form) {
 
 function merge_array($mega, $small) {
     foreach ($small as $k => $a) {
+        if (!isset($mega[$k])) {
+            $mega[$k] = [];
+        }
+
+
         if (is_array($a)) {
             foreach ($a as $v) {
-                if (!isset($mega[$k]))
-                    $mega[$k] = $v;
-                else
-                    $mega[$k] .= '<br>'.$v;
+                if (!in_array($v, $mega[$k]))
+                    $mega[$k][] = $v;
             }
         }
-        else
-            $mega[$k] = $a;
+        else {
+            if (!in_array($a, $mega[$k]))
+                $mega[$k][] = $a;
+        }
     }
 
     return $mega;
@@ -78,36 +156,66 @@ function merge_array($mega, $small) {
     </div>
 
     <div class="container col-md-12">
-
-        <?php
-        if ($hits > 0) {
-            $megaHit = [];
-
-            foreach ($hits as $hit)
-                $megaHit = merge_array($megaHit, $hit['_source']);
-
-        }
-        ?>
-
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-6 offset-md-3" id="report-container">
             <h4>Rapport complet</h4>
 
             <table class="table">
                 <?php
+                $excluded_fields = ['@timestamp', 'threshold_maybe', 'best_match', '@version'];
                 foreach ($megaHit as $k => $subHit) {
-                    echo '<tr><td>'.getNiceLabel($k, $form).'</td><td>';
+                    if (!in_array($k, $excluded_fields)) {
+                        echo '<tr><td>' . getNiceLabel($k, $form) . '</td><td>';
 
-                    if (is_array($subHit)) {
-                        foreach ($subHit as $h)
-                            echo $h . '<br>';
+                        if (is_array($subHit)) {
+                            foreach ($subHit as $h)
+                                echo $h . '<br>';
+                        } else
+                            echo $subHit;
+
+                        echo '</td></tr>';
                     }
-                    else
-                        echo $subHit;
-
-                    echo '</td></tr>';
                 }
                 ?>
             </table>
+
+            <?php
+            foreach ($response as $index) {
+                echo '<div class="table-subreport">';
+                foreach ($index as $name => $hits) {
+                    echo '<h3>' . $name . '</h3>';
+
+
+
+                    echo '<table class="table">';
+                    if (sizeof($hits) > 0) {
+                        foreach ($hits as $field => $values) {
+                            if (!in_array($field, $excluded_fields)) {
+                                echo '<tr><td>'.getNiceLabel($field, $form).'</td><td>';
+
+                                // If it's a raw index, the values are strings and not arrays
+                                if (!is_array($values)) {
+                                    echo $values;
+                                } else {
+
+                                    foreach ($values as $value) {
+                                        echo $value . '<br>';
+                                    }
+                                }
+
+                                echo '</td></tr>';
+                            }
+
+
+                        }
+                    }
+                    else
+                        echo 'Rien dans cet index';
+
+                    echo '</table>';
+                }
+                echo '</div>';
+            }
+            ?>
         </div>
     </div>
 </main>
@@ -116,3 +224,5 @@ function merge_array($mega, $small) {
 include 'commons/footer.php';
 include 'commons/foot.php';
 ?>
+
+}

@@ -15,7 +15,7 @@ if ($handle = opendir(ini_get('include_path').'/topics_conf/')) {
         if ($entry != "." && $entry != "..") {
             $fileExplode = explode('.', $entry);
 
-            if (!isset($fileExplode[2])) // If there isn't a 'json' at the end
+            if (!isset($fileExplode[2]) && !strpos($fileExplode[0], '_raw')) // If there isn't a 'json' at the end
                 $topics[] = $fileExplode[0]; // Get the name of the file
         }
     }
@@ -35,19 +35,10 @@ if ($handle = opendir(ini_get('include_path').'/topics_conf/')) {
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="topic.php">Topics</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Map</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <?php
-                    foreach ($topics as $topic)
-                        echo '<a class="dropdown-item" href="map.php?topic='.$topic.'">'.ucfirst($topic).'</a>';
-                    ?>
-                </div>
+                <a class="nav-link" href="index.php">Recherche</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="activities.php">Activities</a>
+                <a class="nav-link" href="#">Others</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

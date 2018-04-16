@@ -61,21 +61,24 @@ function disp_list(array $array) {
     return $echo;
 }
 
-function disp_array(array $array) {
+function disp_array(array $array, array $headers, array $excluded) {
     $echo = '<tr>';
     $vals = '';
+    $source = $array['_source'];
 
-    foreach ($array['_source'] as $k => $v) {
-
-        if ($k[0] != '@') {
+    foreach ($headers as $h) {
+        if (!in_array($h, $excluded)) {
             $vals .= '<td>';
-            if (sizeof($v) > 1) {
-                $vals .= disp_list($v);
-            } else {
-                if (sizeof($v) > 0)
-                    $vals .= $v[0];
-            }
+            if (isset($source[$h]) && $source[$h] != null) {
+                $v = $source[$h];
 
+                if (sizeof($v) > 1) {
+                    $vals .= disp_list($v);
+                } else {
+                    if (sizeof($v) > 0)
+                        $vals .= $v[0];
+                }
+            }
             $vals .= '</td>';
         }
     }
@@ -87,18 +90,23 @@ function disp_array(array $array) {
     return $echo;
 }
 
-function disp_headers(array $array) {
+function getHeaders(array $hits) {
     $keys = [];
-    foreach (array_keys($array) as $k) {
-        if ($k[0] != '@') {
+    foreach ($hits as $array) {
+        foreach (array_keys($array['_source']) as $k) {
             if (!in_array($k, $keys))
                 $keys[] = $k;
         }
     }
 
+    return $keys;
+}
+
+function disp_headers(array $keys, array $excluded) {
     $echo = '<tr>';
     foreach ($keys as $key) {
-        $echo .= '<th>'.$key.'</th>';
+        if (!in_array($key, $excluded))
+            $echo .= '<th>'.$key.'</th>';
     }
     $echo .= '<th>Select</th>';
     $echo .= '</tr>';
@@ -120,6 +128,7 @@ function disp_headers(array $array) {
     <div class="container col-md-12">
         <form action="report.php" method="post">
             <?php
+            $excluded_fields = ['@timestamp', 'thresholdMaybe', 'best_match', '@version'];
             if ($response != null) {
                 ?>
                 <p>Nombre de résultats: <?php echo $response['hits']['total']; ?></p>
@@ -131,11 +140,11 @@ function disp_headers(array $array) {
                         <table class="table results">
                             <?php
                             $hits = $response['hits']['hits'];
-
-                            echo disp_headers($hits[0]['_source']);
+                            $headers = getHeaders($hits);
+                            echo disp_headers($headers, $excluded_fields);
                             foreach ($hits as $hit) {
         //                        var_dump($hit);
-                                echo disp_array($hit);
+                                echo disp_array($hit, $headers, $excluded_fields);
                             }
                             ?>
                         </table>

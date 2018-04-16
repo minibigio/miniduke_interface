@@ -3,8 +3,5 @@
   "firstname": "Patrick",
   "lastname": "BELMONT",
   "email": "peutwik@hotmail.com",
-  "birthday": null,
-  "note": null,
-  "active": 1,
-  "date_add": "2013-09-03 10:57:09"
+  "birthday": null
 }

@@ -4,3 +4,11 @@
     padding: 0;
 }
 
+@media print {
+    header, footer, nav, .jumbotron {
+        display: none !important;
+    }
+    .report-container {
+        width: 100% !important;
+    }
+}

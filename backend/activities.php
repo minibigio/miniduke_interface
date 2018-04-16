@@ -69,15 +69,25 @@ use Toml\Parser;
         $kafkaHostsHealth = [];
 
         $out = null;
-        $host = explode(':', $kafkaHost);
+        $fullHost = explode(':', $kafkaHost);
 
-        exec('netstat -an | grep '.$host[0].'.'.$host[1].' | grep LISTEN', $out);
+//        exec('netstat -an | grep '.$host[0].'.'.$host[1].' | grep LISTEN', $out);
 
-        $kafkaHostsHealth[] = [$kafkaHost => (!empty($out))];
-        if (empty($out))
-            $kafkaAllGood = false;
-        if (!empty($out))
+        $host = $fullHost[0];
+        $port = $fullHost[1];
+        $waitTimeoutInSeconds = 1;
+        if ($fp = fsockopen($host,$port,$errCode,$errStr,$waitTimeoutInSeconds)){
             $kafkaAllBad = false;
+            $kafkaHostsHealth[] = [$kafkaHost => true];
+            fclose($fp);
+        } else {
+            // It didn't work
+            $kafkaAllGood = false;
+            $kafkaHostsHealth[] = [$kafkaHost => false];
+        }
+
+
+
         //endregion
 
         // Logstash instances infos
@@ -116,10 +126,12 @@ use Toml\Parser;
         $launcherUser = null;
         $launcherHost = null;
 
-        $launcherFound = false;
+        $launcherStartFound = false;
+        $launcherStopFound = false;
         if ($conf['launcher']['distant_launcher'] == true) {
             $out = null;
             $launcherUser = $conf['launcher']['distant']['user'];
+            $launcherPwd = $conf['launcher']['distant']['pwd'];
             $launcherHost = $conf['launcher']['distant']['host'];
             $launcherPath = $conf['launcher']['distant']['path'];
 
@@ -127,19 +139,33 @@ use Toml\Parser;
             $latency = $ping->ping('fsockopen');
 
             $out = null;
-            $launcherFound = false;
-            if ($latency !== false) {
-                exec('ssh '.$conf["launcher"]["distant"]["user"].'@'.$conf["launcher"]["distant"]["host"].' "[[ -f '.$conf["launcher"]["distant"]["path"].'start_logstash.sh ]] && echo \'Found\' || echo \'Not found\'"', $out);
-                $launcherFound = (isset($out[0]) && $out[0] == 'Found');
-            }
 
+            if ($latency !== false) {
+                $remote_conn = ssh2_connect($launcherHost, 22);
+
+                if (ssh2_auth_password($remote_conn, $launcherUser, $launcherPwd)) {
+                    $startStream = ssh2_exec($remote_conn, '[[ -f '.$launcherPath.'start_logstash.sh ]] && echo \'Found\' || echo \'Not found\'');
+                    stream_set_blocking($startStream, true);
+                    $launcherStartFound = (trim(fgets($startStream)) == 'Found');
+
+                    $stopStream = ssh2_exec($remote_conn, '[[ -f '.$launcherPath.'stop_logstash.sh ]] && echo \'Found\' || echo \'Not found\'');
+                    stream_set_blocking($stopStream, true);
+                    $launcherStopFound = (trim(fgets($stopStream)) == 'Found');
+                }
+            }
         }
         else {
             $out = null;
             exec('[[ -f '.$conf["launcher"]["local"]["path"].'start_logstash.sh ]] && echo "Found" || echo "Not found"', $out);
 
             $launcherPath = $conf["launcher"]["local"]["path"];
-            $launcherFound = (isset($out[0]) && $out[0] == 'Found');
+            $launcherStartFound = (isset($out[0]) && $out[0] == 'Found');
+
+            $out = null;
+            exec('[[ -f '.$conf["launcher"]["local"]["path"].'stop_logstash.sh ]] && echo "Found" || echo "Not found"', $out);
+
+            $launcherPath = $conf["launcher"]["local"]["path"];
+            $launcherStopFound = (isset($out[0]) && $out[0] == 'Found');
         }
         //endregion
         ?>
@@ -288,8 +314,10 @@ use Toml\Parser;
             <div class="col-lg-3 col-md-6">
                 <div class="panel">
                     <div class="panel-heading text-white <?php
-                    if ($launcherPath != null && $launcherFound)
+                    if ($launcherPath != null && $launcherStartFound && $launcherStopFound)
                         echo 'bg-success';
+                    elseif ($launcherPath != null && (($launcherStopFound && !$launcherStartFound) || ($launcherStartFound && !$launcherStopFound)))
+                        echo 'bg-warning';
                     else
                         echo 'bg-danger';
                     ?>">
@@ -297,8 +325,10 @@ use Toml\Parser;
 
                         <div class="text-center check"><i class="material-icons">
                                 <?php
-                                if ($launcherPath != null && $launcherFound)
+                                if ($launcherPath != null && $launcherStartFound && $launcherStopFound)
                                     echo 'check_circle';
+                                elseif ($launcherPath != null && (($launcherStopFound && !$launcherStartFound) || ($launcherStartFound && !$launcherStopFound)))
+                                    echo 'report_problem';
                                 else
                                     echo 'error';
                                 ?></i></div>
@@ -321,14 +351,36 @@ use Toml\Parser;
                         if (!$conf['launcher']['distant_launcher']) {
                             ?>
                             <p>Path: <span class="small"><?php echo $launcherPath; ?></span><br>
-                                Status: <?php echo ($launcherFound) ? 'Found' : 'Not found'; ?></p>
+                                Start launcher: <?php echo ($launcherStartFound) ? 'Found' : 'Not found'; ?></p>
                             <?php
                         }
                         else {
                             ?>
                             <p>Host: <?php echo $launcherUser.'@'.$launcherHost; ?><br>
                                 Path: <span class="small"><?php echo $launcherPath; ?></span><br>
-                                Status: <?php echo ($launcherFound) ? 'Found' : 'Not found'; ?></p>
+                                Start launcher: <?php echo ($launcherStartFound) ? 'Found' : 'Not found'; ?></p>
+                            <?php
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading text-white bg-info">
+                        <?php
+                        if (!$conf['launcher']['distant_launcher']) {
+                            ?>
+                            <p>Path: <span class="small"><?php echo $launcherPath; ?></span><br>
+                                Stop launcher: <?php echo ($launcherStopFound) ? 'Found' : 'Not found'; ?></p>
+                            <?php
+                        }
+                        else {
+                            ?>
+                            <p>Host: <?php echo $launcherUser.'@'.$launcherHost; ?><br>
+                                Path: <span class="small"><?php echo $launcherPath; ?></span><br>
+                                Stop launcher: <?php echo ($launcherStopFound) ? 'Found' : 'Not found'; ?></p>
                             <?php
                         }
                         ?>

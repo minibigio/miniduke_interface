@@ -15,7 +15,7 @@ if ($handle = opendir(ini_get('include_path').'/topics_conf/')) {
         if ($entry != "." && $entry != "..") {
             $fileExplode = explode('.', $entry);
 
-            if (!isset($fileExplode[2])) // If there isn't a 'json' at the end
+            if (!isset($fileExplode[2]) && !strpos($fileExplode[0], '_raw')) // If there isn't a 'json' at the end
                 $topics[] = $fileExplode[0]; // Get the name of the file
         }
     }

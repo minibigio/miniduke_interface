@@ -27,6 +27,20 @@ function add_field_logstash($data, $esKey, $formKey) {
     return $out;
 }
 
+$add_filters_logstash = 'add_filters_logstash';
+function add_filters_logstash($array) {
+    $out = '"filters" => [';
+    $comma = 0;
+    foreach ($array as $item) {
+        $out .= '"'.$item.'"';
+        $out .= ($comma  < sizeof($array)-1) ? ', ':'';
+        $comma++;
+    }
+    $out .= ']';
+
+    return $out;
+}
+
 $disp_config_array = 'disp_config_array';
 function disp_config_array($array) {
     $s = "[";
@@ -76,7 +90,7 @@ function rename_all_keys($old, $new) {
 if (isset($_POST) && $_POST['make_conf_file']) {
 
     if (isset($_POST['comparator']) && isset($_POST['key']) && isset($_POST['new_key']) && isset($_POST['high'])
-        && isset($_POST['low']) && isset($_POST['threshold']) && isset($_POST['topic'])) {
+        && isset($_POST['low']) && isset($_POST['threshold']) && isset($_POST['thresholdMaybe']) && isset($_POST['topic'])) {
 
         $comparator = $_POST['comparator'];
         $key = $_POST['key'];
@@ -84,6 +98,7 @@ if (isset($_POST) && $_POST['make_conf_file']) {
         $high = $_POST['high'];
         $low = $_POST['low'];
         $threshold = $_POST['threshold'];
+        $thresholdMaybe = $_POST['thresholdMaybe'];
         $topic = $_POST['topic'];
 
 
@@ -100,6 +115,14 @@ if (isset($_POST) && $_POST['make_conf_file']) {
             $jsonMerged['weights'][] = [(double)$low[$i], (double)$high[$i]];
         }
         $jsonMerged['threshold'] = $threshold;
+        $jsonMerged['thresholdMaybe'] = $thresholdMaybe;
+
+        $filters = [];
+        for ($i = 0; $i < sizeof($key); $i++) {
+            if (isset($_POST['filter_'.$key[$i]])) {
+                $filters[] = $newKey[$i];
+            }
+        }
 
         file_put_contents(ini_get('include_path').'/topics_conf/'.$topic.'.conf.json', json_encode($jsonMerged));
 
@@ -130,7 +153,7 @@ if (isset($_POST) && $_POST['make_conf_file']) {
         $logstashConfigurationFile = <<<TEXT
 input { 
     kafka {
-        "bootstrap_servers" => {$configuration['kafka']['host']}
+        "bootstrap_servers" => "{$configuration['kafka']['host']}"
         "topics" => "{$kafka_topic}"
     }
 }
@@ -148,13 +171,14 @@ filter {
             {$add_field_logstash($merged, 'fields', 'new_key')}
             {$add_field_logstash($merged, 'comparator', 'comparator')}
             "weight" => [ {$weight} ]
-            {$add_field_logstash($merged, 'filters', 'new_key')}
+            {$add_filters_logstash($filters)}
             "threshold" => $threshold
+            "thresholdMaybe" => $thresholdMaybe
             "host" => "{$configuration['elasticsearch']['host']}"
         }
     }
     prune {
-        whitelist_names => ["fields", "comparator", "data", "weight", "filters", "threshold", "host", "timestamp"]
+        whitelist_names => ["fields", "comparator", "data", "weight", "filters", "threshold", "thresholdMaybe", "host", "timestamp"]
     }
 }
 output {
@@ -179,10 +203,14 @@ input {
     }
 }
 filter {
+    json {
+        source => "message"   
+    }
     mutate {
         rename => {
             {$rename_all_keys($key, $newKey)}
         }
+        remove_field => ["message"]
     }
 }
 output {
@@ -198,4 +226,6 @@ TEXT;
         file_put_contents(ini_get('include_path').'/topics_conf/'.$topic.'_raw.conf', $logstashConfigurationFileRaw);
     }
 }
+
+header('Location: map.php?topic='.$_POST['topic']);
 
