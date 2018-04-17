@@ -13,7 +13,7 @@ error_reporting(E_ALL);
 include 'commons/head.php';
 include '../vendor/autoload.php';
 use Toml\Parser;
-
+use Elasticsearch\ClientBuilder;
 
 $topics = [];
 
@@ -29,7 +29,7 @@ if ($handle = opendir(ini_get('include_path').'/topics_conf/')) {
     closedir($handle);
 }
 
-
+$configuration = Parser::fromFile(ini_get('include_path').'/config.toml');
 $json = [];
 
 if (isset($_GET['topic'])) {
@@ -47,7 +47,6 @@ if (isset($_GET['topic'])) {
 }
 
 if (isset($_GET['index']) && in_array($_GET['topic'], $topics)) {
-    $configuration = Parser::fromFile(ini_get('include_path').'/config.toml');
 
     $pdo = new PDO($configuration["database"]["connection"]);
 
@@ -74,8 +73,6 @@ if (isset($_GET['index']) && in_array($_GET['topic'], $topics)) {
                 $logstashInstance = $logstashInstancesSql->fetch();
                 ssh2_exec($remote_conn, 'sh '.$configuration["launcher"]["distant"]["path"].'stop_logstash.sh '.$logstashInstance['pid']);
             }
-//            exec('ssh '.$configuration["launcher"]["distant"]["user"].'@'.$configuration["launcher"]["distant"]["host"].' "sh '.$configuration["launcher"]["distant"]["path"].'stop_logstash.sh '.$logstashInstance['pid'].'"', $pid);
-//            exec('ssh '.$configuration["launcher"]["distant"]["user"].'@'.$configuration["launcher"]["distant"]["host"].' "sh '.$configuration["launcher"]["distant"]["path"].'stop_logstash.sh '.$logstashInstance['pid'].'"', $pid);
         }
 
         else {
@@ -196,7 +193,7 @@ include 'commons/header.php';
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="">Nouvelle clé</span>
                                         </div>
-                                        <input name="new_key[]" class="form-control">
+                                        <input name="new_key[]" class="form-control" required>
                                     </div>
                                 </div>
 
@@ -208,7 +205,7 @@ include 'commons/header.php';
                                         </div>
 
                                         <select name="comparator[<?php echo $i; ?>]" class="custom-select"
-                                                id="inputGroupSelect01" data-id="<?php echo $i; ?>">
+                                                id="inputGroupSelect01" data-id="<?php echo $i; ?>" required>
                                             <?php
                                             $displayed = [];
                                             foreach ($map_options as $op) {
@@ -227,7 +224,7 @@ include 'commons/header.php';
                                                     <span class="input-group-text" id="">Minimal</span>
                                                 </div>
                                                 <input type="number" class="form-control" name="low[<?php echo $i; ?>]" step="0.01"
-                                                       min="0" max="1" data-id="<?php echo $i; ?>">
+                                                       min="0" max="1" data-id="<?php echo $i; ?>" required>
                                             </div>
 
                                             <div class="input-group col-md-6">
@@ -235,7 +232,7 @@ include 'commons/header.php';
                                                     <span class="input-group-text" id="">Maximum</span>
                                                 </div>
                                                 <input type="number" class="form-control" name="high[<?php echo $i; ?>]" step="0.01"
-                                                       min="0" max="1" data-id="<?php echo $i; ?>">
+                                                       min="0" max="1" data-id="<?php echo $i; ?>" required>
                                             </div>
                                         </div>
                                     </div>
@@ -249,19 +246,20 @@ include 'commons/header.php';
                         ?>
                         <div class="form-group col-md-8">
                             <label for="thresholdMaybe">Seuil suspicieux</label>
-                            <input type="number" name="thresholdMaybe" step="0.01" min="0" max="1" class="form-control" id="thresholdMaybe" value="0.88">
+                            <input type="number" name="thresholdMaybe" step="0.01" min="0" max="1" class="form-control" id="thresholdMaybe" value="0.88" required>
                             <small id="thresholdHelp" class="form-text text-muted">Les ressemblances au dessus du seuil suspicieux devront être vérifiés.</small>
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="threshold">Seuil général</label>
-                            <input type="number" name="threshold" step="0.01" min="0" max="1" class="form-control" id="threshold" value="0.91">
+                            <input type="number" name="threshold" step="0.01" min="0" max="1" class="form-control" id="threshold" value="0.91" required>
                             <small id="thresholdHelp" class="form-text text-muted">Les ressemblances au dessus du seuil général seront réconciliés.</small>
                         </div>
 
                         <input type="hidden" name="make_conf_file" value="1">
                         <input type="hidden" name="topic" value="<?php echo $_GET['topic']; ?>">
 
+                        <p><strong>Pensez aux filtres !</strong></p>
                         <button class="btn btn-primary btn-lg">Make conf file</button>
                         <?php
                         $pdo = new PDO('sqlite:'.ini_get('include_path').'/miniduke.db');
@@ -319,7 +317,7 @@ include 'commons/header.php';
                             $map_json = json_decode(fread($fopen, filesize(ini_get('include_path').'/topics_conf/'.$_GET['topic'].'.conf.json')), true);
 
                             $threshold = $map_json['threshold'];
-                            $threshold = $map_json['thresholdMaybe'];
+                            $thresholdMaybe = $map_json['thresholdMaybe'];
 
                             $fopen = fopen(ini_get('include_path').'/map_options.json', 'r');
                             $map_options = json_decode(fread($fopen, filesize(ini_get('include_path').'/map_options.json')), true);
@@ -335,6 +333,22 @@ include 'commons/header.php';
                 </table>
                 <?php echo 'Seuil suspicieux: <strong>'.$thresholdMaybe.'</strong>'; ?>
                 <?php echo 'Seuil général: <strong>'.$threshold.'</strong>'; ?>
+
+                <hr>
+
+                <h3>Elasticsearch details</h3>
+                <?php
+                $client = ClientBuilder::create();
+                $client->setHosts([$configuration['elasticsearch']['host']]);
+                $client = $client->build();
+
+                $response = $client->count(['index' => $_GET['topic'].'_raw',
+                                            'type' => 'raw',
+                                            'body' => ['query' => ['match_all' => (object)[]]]
+                                            ]);
+                ?>
+
+                <p>Nombre de données brutes dans <em><?php echo $_GET['topic']; ?>_raw</em>: <?php echo $response['count']; ?></p>
             </div>
         </div>
     </div> <!-- /container -->
