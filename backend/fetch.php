@@ -210,7 +210,7 @@ filter {
         rename => {
             {$rename_all_keys($key, $newKey)}
         }
-        remove_field => ["message"]
+        remove_field => ["@timestamp", "message"]
     }
 }
 output {
