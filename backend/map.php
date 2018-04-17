@@ -46,6 +46,8 @@ if (isset($_GET['topic'])) {
     }
 }
 
+
+
 if (isset($_GET['index']) && in_array($_GET['topic'], $topics)) {
 
     $pdo = new PDO($configuration["database"]["connection"]);
@@ -59,67 +61,118 @@ if (isset($_GET['index']) && in_array($_GET['topic'], $topics)) {
         $auth = ssh2_auth_password($remote_conn, $configuration["launcher"]["distant"]["user"], $configuration["launcher"]["distant"]["pwd"]);
     }
 
-    if ($_GET['index'] == 'restart' || $_GET['index'] == 'stop') {
-        $logstashInstancesSql= $pdo->prepare('select * from logstash_instances where name=?');
+    if ($_GET['index'] == 'stopAll' || $_GET['index'] == 'stopMdm' || $_GET['index'] == 'stopRaw') {
+        $stopAll = ($_GET['index'] == 'stopAll');
+        $stopMdm = ($_GET['index'] == 'stopMdm');
+        $stopRaw = ($_GET['index'] == 'stopRaw');
 
+        $logstashInstancesSql= $pdo->prepare('select * from logstash_instances where name=?');
+        $logstashInstancesCountSql= $pdo->prepare('select count(*) from logstash_instances where name=?');
+        $deleteLogstashInstancesSql= $pdo->prepare('delete from logstash_instances where name=?');
 
         if ($configuration["launcher"]["distant_launcher"]) {
             if ($auth) {
-                $logstashInstancesSql->execute([$_GET['topic']]);
-                $logstashInstance = $logstashInstancesSql->fetch();
-                ssh2_exec($remote_conn, 'sh '.$configuration["launcher"]["distant"]["path"].'stop_logstash.sh '.$logstashInstance['pid']);
+                $logstashInstancesCountSql->execute([$_GET['topic']]);
+                $logstashInstanceCount = $logstashInstancesCountSql->fetch();
 
-                $logstashInstancesSql->execute([$_GET['topic'].'_raw']);
-                $logstashInstance = $logstashInstancesSql->fetch();
-                ssh2_exec($remote_conn, 'sh '.$configuration["launcher"]["distant"]["path"].'stop_logstash.sh '.$logstashInstance['pid']);
+                if ($logstashInstanceCount[0] > 0 && ($stopAll || $stopMdm)) {
+                    $logstashInstancesSql->execute([$_GET['topic']]);
+                    $logstashInstance = $logstashInstancesSql->fetch();
+                    ssh2_exec($remote_conn, 'sh '.$configuration["launcher"]["distant"]["path"].'stop_logstash.sh '.$logstashInstance['pid']);
+
+                    $deleteLogstashInstancesSql->execute([$_GET['topic']]);
+                }
+
+                $logstashInstancesCountSql->execute([$_GET['topic'].'_raw']);
+                $logstashInstanceCount = $logstashInstancesCountSql->fetch();
+
+                if ($logstashInstanceCount[0] > 0 && ($stopAll || $stopRaw)) {
+                    $logstashInstancesSql->execute([$_GET['topic'] . '_raw']);
+                    $logstashInstance = $logstashInstancesSql->fetch();
+                    ssh2_exec($remote_conn, 'sh ' . $configuration["launcher"]["distant"]["path"] . 'stop_logstash.sh ' . $logstashInstance['pid']);
+
+                    $deleteLogstashInstancesSql->execute([$_GET['topic'].'_raw']);
+                }
             }
         }
 
         else {
-            $logstashInstancesSql->execute([$_GET['topic']]);
-            $logstashInstance = $logstashInstancesSql->fetch();
-            exec('sh ' . $configuration["launcher"]["local"]["path"] . 'stop_logstash.sh '.$logstashInstance['pid'], $pid);
+            $logstashInstancesCountSql->execute([$_GET['topic']]);
+            $logstashInstanceCount = $logstashInstancesCountSql->fetch();
 
-            $logstashInstancesSql->execute([$_GET['topic'].'_raw']);
-            $logstashInstance = $logstashInstancesSql->fetch();
-            exec('sh ' . $configuration["launcher"]["local"]["path"] . 'stop_logstash.sh '.$logstashInstance['pid'], $pid);
+            if ($logstashInstanceCount[0] > 0 && ($stopAll || $stopMdm)) {
+                $logstashInstancesSql->execute([$_GET['topic']]);
+                $logstashInstance = $logstashInstancesSql->fetch();
+                exec('sh ' . $configuration["launcher"]["local"]["path"] . 'stop_logstash.sh ' . $logstashInstance['pid'], $pid);
+
+                $deleteLogstashInstancesSql->execute([$_GET['topic']]);
+            }
+
+            $logstashInstancesCountSql->execute([$_GET['topic'].'_raw']);
+            $logstashInstanceCount = $logstashInstancesCountSql->fetch();
+            if ($logstashInstanceCount[0] > 0 && ($stopAll || $stopRaw)) {
+                $logstashInstancesSql->execute([$_GET['topic'] . '_raw']);
+                $logstashInstance = $logstashInstancesSql->fetch();
+                exec('sh ' . $configuration["launcher"]["local"]["path"] . 'stop_logstash.sh ' . $logstashInstance['pid'], $pid);
+
+                $deleteLogstashInstancesSql->execute([$_GET['topic'].'_raw']);
+            }
         }
-
-        $logstashInstancesSql= $pdo->prepare('delete from logstash_instances where name=?');
-        $logstashInstancesSql->execute([$_GET['topic']]);
-        $logstashInstancesSql->execute([$_GET['topic'].'_raw']);
     }
 
     $logstashInstancesSql= $pdo->prepare('select count(*) from logstash_instances where name=?');
+
     $logstashInstancesSql->execute([$_GET['topic']]);
     $logstashInstancesCount = $logstashInstancesSql->fetch();
 
-    if (($_GET['index'] == 'start' || $_GET['index'] == 'restart') && $logstashInstancesCount[0] == 0) {
+    $logstashInstancesSql->execute([$_GET['topic'].'_raw']);
+    $logstashInstancesCount = $logstashInstancesSql->fetch();
+
+    if ($_GET['index'] == 'startAll' || $_GET['index'] == 'startMdm' || $_GET['index'] == 'startRaw') {
+        $startAll = ($_GET['index'] == 'startAll');
+        $startMdm = ($_GET['index'] == 'startMdm');
+        $startRaw = ($_GET['index'] == 'startRaw');
+
+        $logstashInstancesSql= $pdo->prepare('select count(*) from logstash_instances where name=?');
+
+        $logstashInstancesSql->execute([$_GET['topic']]);
+        $countTopicLog = $logstashInstancesSql->fetch();
+
+        $logstashInstancesSql->execute([$_GET['topic'].'_raw']);
+        $countRawTopicLog = $logstashInstancesSql->fetch();
 
         if ($configuration["launcher"]["distant_launcher"]) {
             if ($auth) {
-                $pid1Stream = ssh2_exec($remote_conn, 'sh '.$configuration["launcher"]["distant"]["path"].'start_logstash.sh '.$_GET['topic']);
-                stream_set_blocking($pid1Stream, true);
-                $pid1 = fgets($pid1Stream);
+                if (($startAll || $startMdm) && $countTopicLog[0] == 0) {
+                    $pid1Stream = ssh2_exec($remote_conn, 'sh ' . $configuration["launcher"]["distant"]["path"] . 'start_logstash.sh ' . $_GET['topic']);
+                    stream_set_blocking($pid1Stream, true);
+                    $pid1 = fgets($pid1Stream);
+                }
 
-                $pidRawStream = ssh2_exec($remote_conn,'sh '.$configuration["launcher"]["distant"]["path"].'start_logstash.sh '.$_GET['topic'].'_raw');
-                stream_set_blocking($pidRawStream, true);
-                $pidRaw = fgets($pidRawStream);
+                if (($startAll || $startRaw) && $countRawTopicLog[0] == 0) {
+                    $pidRawStream = ssh2_exec($remote_conn, 'sh ' . $configuration["launcher"]["distant"]["path"] . 'start_logstash.sh ' . $_GET['topic'] . '_raw');
+                    stream_set_blocking($pidRawStream, true);
+                    $pidRaw = fgets($pidRawStream);
+                }
 
                 $remote_conn = null;
             }
         }
         else {
-            exec('sh ' . $configuration["launcher"]["local"]["path"] . 'start_logstash.sh ' . $_GET['topic'], $pid1Stream);
-            exec('sh ' . $configuration["launcher"]["local"]["path"] . 'start_logstash.sh ' . $_GET['topic'].'_raw', $pidRaw);
+            if ($startAll || $startMdm)
+                exec('sh ' . $configuration["launcher"]["local"]["path"] . 'start_logstash.sh ' . $_GET['topic'], $pid1Stream);
+
+            if ($startAll || $startRaw)
+                exec('sh ' . $configuration["launcher"]["local"]["path"] . 'start_logstash.sh ' . $_GET['topic'].'_raw', $pidRaw);
         }
 
+        $logstashInstancesInsert = $pdo->prepare('INSERT INTO logstash_instances VALUES (?, ?)');
 
-        if ((int)$pid1 > 0 && (int)$pidRaw > 0) {
-            $logstashInstancesInsert = $pdo->prepare('INSERT INTO logstash_instances VALUES (?, ?)');
+        if (($startAll || $startMdm) && (int)$pid1 > 0)
             $logstashInstancesInsert->execute([$_GET['topic'], (int)$pid1]);
+
+        if (($startAll || $startRaw) && (int)$pidRaw > 0)
             $logstashInstancesInsert->execute([$_GET['topic'].'_raw', (int)$pidRaw]);
-        }
     }
 
     header('Location: map.php?topic='.$_GET['topic']);
@@ -260,31 +313,64 @@ include 'commons/header.php';
                         <input type="hidden" name="topic" value="<?php echo $_GET['topic']; ?>">
 
                         <p><strong>Pensez aux filtres !</strong></p>
-                        <button class="btn btn-primary btn-lg">Make conf file</button>
+                        <p><button class="btn btn-primary btn-lg">Make conf file</button></p>
+                        <p>
                         <?php
                         $pdo = new PDO('sqlite:'.ini_get('include_path').'/miniduke.db');
                         $logtsashInstanceSql = $pdo->prepare('select count(*) from logstash_instances where name=?');
                         $logtsashInstanceSql->execute([$_GET['topic']]);
-                        $logstashInstance = $logtsashInstanceSql->fetch();
+                        $logstashInstanceTopic = $logtsashInstanceSql->fetch();
 
-                        if ($logstashInstance[0] == 0) {
+                        $logtsashInstanceSql->execute([$_GET['topic'].'_raw']);
+                        $logstashInstanceTopicRaw = $logtsashInstanceSql->fetch();
+
+                        if ($logstashInstanceTopic[0] == 0 && $logstashInstanceTopicRaw[0] == 0) {
                             ?>
-                            <a href="map.php?index=start&topic=<?php echo $_GET['topic']; ?>">
-                                <button type="button" class="btn btn-success btn-lg">Index data</button>
+                            <a href="map.php?index=startAll&topic=<?php echo $_GET['topic']; ?>">
+                                <button type="button" class="btn btn-success btn-lg">Index all</button>
                             </a>
                             <?php
                         }
-                        else {
+                        if ($logstashInstanceTopic[0] == 0) {
                             ?>
-                            <a href="map.php?index=restart&topic=<?php echo $_GET['topic']; ?>">
-                                <button type="button" class="btn btn-info btn-lg">Restart index</button>
+                            <a href="map.php?index=startMdm&topic=<?php echo $_GET['topic']; ?>">
+                                <button type="button" class="btn btn-success btn-lg">Index MDM</button>
                             </a>
-                            <a href="map.php?index=stop&topic=<?php echo $_GET['topic']; ?>">
-                                <button type="button" class="btn btn-danger btn-lg">Stop index</button>
+                            <?php
+                        }
+                        if ($logstashInstanceTopicRaw[0] == 0) {
+                            ?>
+                            <a href="map.php?index=startRaw&topic=<?php echo $_GET['topic']; ?>">
+                                <button type="button" class="btn btn-success btn-lg">Index raw</button>
                             </a>
                             <?php
                         }
 
+                        if ($logstashInstanceTopic[0] > 0 && $logstashInstanceTopicRaw[0] > 0) {
+                            ?>
+                            <a href="map.php?index=stopAll&topic=<?php echo $_GET['topic']; ?>">
+                                <button type="button" class="btn btn-danger btn-lg">Stop all index</button>
+                            </a>
+                            <?php
+                        }
+
+                        if ($logstashInstanceTopic[0] > 0) {
+                            ?>
+                            <a href="map.php?index=stopMdm&topic=<?php echo $_GET['topic']; ?>">
+                                <button type="button" class="btn btn-danger btn-lg">Stop MDM index</button>
+                            </a>
+                            <?php
+                        }
+                        if ($logstashInstanceTopicRaw[0] > 0) {
+                            ?>
+                            <a href="map.php?index=stopRaw&topic=<?php echo $_GET['topic']; ?>">
+                                <button type="button" class="btn btn-danger btn-lg">Stop raw index</button>
+                            </a>
+                            <?php
+                        }
+                        ?>
+                        </p>
+                    <?php
                     }
                     else
                         echo '<div><p>Aucune clé n\'apparait ? N\'oubliez pas de pull le schéma</p>';
