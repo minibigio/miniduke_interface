@@ -178,7 +178,7 @@ filter {
         }
     }
     prune {
-        whitelist_names => ["fields", "comparator", "data", "weight", "filters", "threshold", "thresholdMaybe", "host", "timestamp"]
+        whitelist_names => ["fields", "comparator", "data", "weight", "filters", "threshold", "thresholdMaybe", "host"]
     }
 }
 output {
