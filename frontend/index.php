@@ -26,7 +26,7 @@ use Toml\Parser;
         <div class="container">
             <h3>Accueil</h3>
             <p>Assurez vous que vous avez bien les droits pour obtenir les informations sur quelqu'un.</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Comment faire &raquo;</a></p>
+<!--            <p><a class="btn btn-primary btn-lg" href="#" role="button">Comment faire &raquo;</a></p>-->
         </div>
     </div>
 
@@ -34,7 +34,7 @@ use Toml\Parser;
         <?php
         $conf = Parser::fromFile('../config.toml');
 
-       /* $elasticHost = $conf['elasticsearch']['host'];
+        $elasticHost = $conf['elasticsearch']['host'];
         $index = $conf['elasticsearch']['index'];
         $type = $conf['elasticsearch']['type'];
         $elasticJsonMapping = null;
@@ -48,7 +48,7 @@ use Toml\Parser;
                 if ($key[0] != '@')
                     $elasticProperties[] = $key;
             }
-        }*/
+        }
         ?>
 
         <form action="results.php" method="post">
