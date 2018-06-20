@@ -8,6 +8,10 @@ title = "Fichier de configuration de l'application Miniduke"
 name = "Minibig"
 dob = "2018-02-23T17:00:00+01:00"
 
+# mac, linux
+[environment]
+type = "linux"
+
 # Préferer 127.0.0.1:9200 au lieu de localhost:9200
 [elasticsearch]
 host = "127.0.0.1:9200"
@@ -43,4 +47,4 @@ connection = "sqlite:/Library/WebServer/Documents/miniduke_interface/miniduke.db
 type = "sqlite3"
 
 [search]
-unique = ["address1", "tel1", "tel2", "email"]
+unique = ["address1", "tel1", "tel2", "mail"]

@@ -16,7 +16,6 @@ include ini_get('include_path').'/vendor/autoload.php';
 <?php
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
-
 $topics = [];
 
 if ($handle = opendir(ini_get('include_path').'/topics_conf/')) {
@@ -46,8 +45,9 @@ if (isset($_GET['pull']) && in_array($_GET['pull'], $topics)) {
     $macosPATH = '/Library/Frameworks/Python.framework/Versions/3.6/bin/python3.6';
     $linuxPATH = 'python3';
     $conf = Parser::fromFile(ini_get('include_path').'/config.toml');
-    exec($macosPATH.' '.ini_get('include_path').'/consume.py '.$conf['kafka']['host'].' '.$_GET['pull'], $output);
-    var_dump($output);
+    $pyPath = ($conf['environment'] == 'linux') ? $linuxPATH:$macosPATH;
+
+    exec($linuxPATH.' '.ini_get('include_path').'/consume.py '.$conf['kafka']['host'].' '.$_GET['pull'], $output);
 }
 
 if (isset($_GET['delete']) && in_array($_GET['delete'], $topics)) {
