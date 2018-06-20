@@ -193,7 +193,7 @@ include 'commons/header.php';
     <div class="jumbotron">
         <div class="container">
             <h3>Mapping</h3>
-            <p>Avant de lancer l'importation, vous devez mapper les attributs des vues de la file d'attente.</p>
+            <p>Avant de lancer l'importation, les attributs des vues doivent-être mappés.</p>
             <p><a class="btn btn-primary btn-lg" href="#" role="button">Comment faire &raquo;</a></p>
         </div>
     </div>
@@ -379,62 +379,79 @@ include 'commons/header.php';
             </div>
 
             <div class="col-md-5">
-                <h3>Map actuel</h3>
-                <table class="table">
-                    <tr><th>Ancienne clé</th><th>Nouvelle clé</th><th>Comparateur</th><th>Pondération Min</th><th>Pondération Max</th></tr>
-                    <?php
-                    function disp_weight(array $w) {
-                        return $w[0].'</td><td>'.$w[1];
-                    }
-                    function get_pretty_name_comp(String $comp, array $options) {
-                        foreach ($options as $o) {
-                            if ($comp == $o['comparator'])
-                                return $o['comparator_name'];
+                <?php
+                if (!empty($json)) {
+                    ?>
+
+                    <h3>Map actuel</h3>
+                    <table class="table">
+                        <tr>
+                            <th>Ancienne clé</th>
+                            <th>Nouvelle clé</th>
+                            <th>Comparateur</th>
+                            <th>Pondération Min</th>
+                            <th>Pondération Max</th>
+                        </tr>
+                        <?php
+                        function disp_weight(array $w)
+                        {
+                            return $w[0] . '</td><td>' . $w[1];
                         }
-                        return null;
-                    }
 
-                    $threshold = null;
-                    $thresholdMaybe = null;
+                        function get_pretty_name_comp(String $comp, array $options)
+                        {
+                            foreach ($options as $o) {
+                                if ($comp == $o['comparator'])
+                                    return $o['comparator_name'];
+                            }
+                            return null;
+                        }
 
-                    if (!empty($json)) {
-                        if (file_exists(ini_get('include_path').'/topics_conf/'.$_GET['topic'].'.conf.json')) {
-                            $fopen = fopen(ini_get('include_path').'/topics_conf/'.$_GET['topic'].'.conf.json', 'r');
-                            $map_json = json_decode(fread($fopen, filesize(ini_get('include_path').'/topics_conf/'.$_GET['topic'].'.conf.json')), true);
+                        $threshold = null;
+                        $thresholdMaybe = null;
 
-                            $threshold = $map_json['threshold'];
-                            $thresholdMaybe = $map_json['thresholdMaybe'];
+                        if (!empty($json)) {
+                            if (file_exists(ini_get('include_path') . '/topics_conf/' . $_GET['topic'] . '.conf.json')) {
+                                $fopen = fopen(ini_get('include_path') . '/topics_conf/' . $_GET['topic'] . '.conf.json', 'r');
+                                $map_json = json_decode(fread($fopen, filesize(ini_get('include_path') . '/topics_conf/' . $_GET['topic'] . '.conf.json')), true);
 
-                            $fopen = fopen(ini_get('include_path').'/map_options.json', 'r');
-                            $map_options = json_decode(fread($fopen, filesize(ini_get('include_path').'/map_options.json')), true);
+                                $threshold = $map_json['threshold'];
+                                $thresholdMaybe = $map_json['thresholdMaybe'];
 
-                            $i = 0;
-                            foreach (array_keys($json) as $key) {
-                                echo '<tr><td>' . $key.'</td><td>'.$map_json['new_keys'][$i].'</td><td>'.get_pretty_name_comp($map_json['comparators'][$i], $map_options).'</td><td>'.disp_weight($map_json['weights'][$i]).'</td></tr>';
-                                $i++;
+                                $fopen = fopen(ini_get('include_path') . '/map_options.json', 'r');
+                                $map_options = json_decode(fread($fopen, filesize(ini_get('include_path') . '/map_options.json')), true);
+
+                                $i = 0;
+                                foreach (array_keys($json) as $key) {
+                                    echo '<tr><td>' . $key . '</td><td>' . $map_json['new_keys'][$i] . '</td><td>' . get_pretty_name_comp($map_json['comparators'][$i], $map_options) . '</td><td>' . disp_weight($map_json['weights'][$i]) . '</td></tr>';
+                                    $i++;
+                                }
                             }
                         }
-                    }
+                        ?>
+                    </table>
+                    <?php echo 'Seuil suspicieux: <strong>' . $thresholdMaybe . '</strong>'; ?>
+                    <?php echo 'Seuil général: <strong>' . $threshold . '</strong>'; ?>
+
+                    <hr>
+
+                    <h3>Elasticsearch details</h3>
+                    <?php
+                    $client = ClientBuilder::create();
+                    $client->setHosts([$configuration['elasticsearch']['host']]);
+                    $client = $client->build();
+
+                    $response = $client->count(['index' => $_GET['topic'] . '_raw',
+                        'type' => 'raw',
+                        'body' => ['query' => ['match_all' => (object)[]]]
+                    ]);
                     ?>
-                </table>
-                <?php echo 'Seuil suspicieux: <strong>'.$thresholdMaybe.'</strong>'; ?>
-                <?php echo 'Seuil général: <strong>'.$threshold.'</strong>'; ?>
 
-                <hr>
-
-                <h3>Elasticsearch details</h3>
-                <?php
-                $client = ClientBuilder::create();
-                $client->setHosts([$configuration['elasticsearch']['host']]);
-                $client = $client->build();
-
-                $response = $client->count(['index' => $_GET['topic'].'_raw',
-                                            'type' => 'raw',
-                                            'body' => ['query' => ['match_all' => (object)[]]]
-                                            ]);
+                    <p>Nombre de données brutes dans <em><?php echo $_GET['topic']; ?>
+                            _raw</em>: <?php echo $response['count']; ?></p>
+                    <?php
+                }
                 ?>
-
-                <p>Nombre de données brutes dans <em><?php echo $_GET['topic']; ?>_raw</em>: <?php echo $response['count']; ?></p>
             </div>
         </div>
     </div> <!-- /container -->

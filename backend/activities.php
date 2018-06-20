@@ -25,8 +25,8 @@ use Toml\Parser;
     <div class="jumbotron">
         <div class="container">
             <h3>Activités</h3>
-            <p>Afin de garantir le bon fonctionement des processus servant à l'indexation, tout est reporté ici</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Comment faire &raquo;</a></p>
+            <p>Les indicateurs permettent de comprendre l'origine d'éventuels problèmes</p>
+<!--            <p><a class="btn btn-primary btn-lg" href="#" role="button">Comment faire &raquo;</a></p>-->
         </div>
     </div>
 

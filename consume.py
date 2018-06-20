@@ -32,7 +32,8 @@ if len(sys.argv) > 1:
     for message in consumer:
         # message value and key are raw bytes -- decode if necessary!
         # e.g., for unicode: `message.value.decode('utf-8')`
-
-        data = open('topics_data/' + topic + '.json', 'ab')
-        data.write(message.value)
-        data.close()
+        if message:
+            data = open('topics_data/' + topic + '.json', 'ab')
+            data.write(message.value)
+            data.close()
+            break
